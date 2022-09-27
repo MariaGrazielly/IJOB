@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { View, Image, Text, Button, TouchableOpacity} from 'react-native';
 
+=======
+import { View, Image, Text, Button } from 'react-native';
+import {auth} from "../../BD/firebase";
+>>>>>>> 849a39bb7c872c8da465e8717101e038698a2b57
 import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
 import { Inputs } from '../../components/Input';
