@@ -14,9 +14,11 @@ export const styles = StyleSheet.create({
   },
   btn:{
   width: '100%', 
-  height: 40,
-  borderRadius: 4,
+  height: 40, 
   marginBottom: 10,
+  borderRadius: 4,
+  backgroundColor: '#007EF3',
+  color: 'white',
   },
   title_btn:{
     fontSize: 17,
@@ -26,19 +28,31 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 40,
+    padding: 4,
   },
   linha:{
     width:'100%',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 4,
   },
   linha_1:{
-    width: "40%",
+    width: "45%",
     borderTopWidth: 1,
 
   },
   linha_2:{
-    width: "40%",
+    width: "45%",
     borderTopWidth: 1,
+  },
+  login_google:{
+    marginTop: 50,
+    backgroundColor: "white",
+  },
+  texto_google:{
+    fontSize: 30,
+    color: 'blue',
+    padding: 4,
   }
 });

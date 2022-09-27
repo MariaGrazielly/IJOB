@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
+
 import { View, Image, Text, Button, TouchableOpacity} from 'react-native';
 
-=======
-import { View, Image, Text, Button } from 'react-native';
-import {auth} from "../../BD/firebase";
->>>>>>> 849a39bb7c872c8da465e8717101e038698a2b57
 import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
 import { Inputs } from '../../components/Input';
+import { GoogleSigninButton } from 'react-native-google-signin';
 //import  Icon  from 'react-native-vector-icons/FontAwesome5';
 
 export function Login() {
@@ -27,10 +24,11 @@ export function Login() {
         <Inputs 
         titlo='Senha'
         onChangeText={setSenha}
+        secureTextEntry
         />
 
       <View style={styles.btn}>
-        <Button title='Entrar' />
+       <Button title='Entrar' color='white' />
       </View>    
 
       <View style={styles.container_btn}>
@@ -46,6 +44,10 @@ export function Login() {
         <View style={styles.linha_1}></View>
         <Text>OU</Text>
         <View style={styles.linha_2}></View>
+      </View>
+
+      <View style={styles.login_google}>
+        <Text style={styles.texto_google}>LOGIN GOOGLE</Text>
       </View>
 
     </View>
