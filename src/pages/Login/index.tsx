@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, Text, Button } from 'react-native';
+import { View, Image, Text, Button, TouchableOpacity} from 'react-native';
 
 import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
@@ -23,8 +23,26 @@ export function Login() {
         titlo='Senha'
         onChangeText={setSenha}
         />
+
+      <View style={styles.btn}>
         <Button title='Entrar' />
-    
+      </View>    
+
+      <View style={styles.container_btn}>
+        <TouchableOpacity>
+          <Text style={styles.title_btn}>Cadastre-se</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+            <Text style={styles.title_btn}>Redefinir senha</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.linha} >
+        <View style={styles.linha_1}></View>
+        <Text>OU</Text>
+        <View style={styles.linha_2}></View>
+      </View>
+
     </View>
   );
 }
