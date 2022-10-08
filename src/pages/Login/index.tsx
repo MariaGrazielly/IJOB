@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
-import { View, Image, Text, Button, TouchableOpacity} from 'react-native';
-
+import { View, Image, Text, Button, TouchableOpacity, Alert} from 'react-native';
+import {getAuth,signInWithEmailAndPassword,} from 'firebase/auth';
+import {initializeApp} from 'firebase/app';
+import {firebaseConfig} from './../../../back-end/firebase-config';
 import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
 import { Inputs } from '../../components/Input';
@@ -10,25 +12,43 @@ import { GoogleSigninButton } from 'react-native-google-signin';
 
 export function Login() {
 
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
+    const [email, setEmail] = React.useState("");
+    const [senha, setSenha] = React.useState("");
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
+    const handleSignIn =() => {
+      signInWithEmailAndPassword(auth,email,senha )
+      // userCredential passado em parametro teste
+      .then((userCredential)=>{
+        console.log ("Logado!")
+        Alert.alert("Logado!")
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch (error =>{
+        console.log (error)
+      })
+    }
+    
+    
   return (
     <View style={styles.container}>
         <Image source={logoImg} />
         <Text style={styles.title}>Acesse sua conta</Text>
         <Inputs 
         titlo='E-mail'
-        onChangeText={setEmail}
+        onChangeText={(text)=> setEmail(text)}
         />
         <Inputs 
         titlo='Senha'
-        onChangeText={setSenha}
+        onChangeText={(text)=> setSenha(text)}
         secureTextEntry
         />
 
       <View style={styles.btn}>
-       <Button title='Entrar' color='white' />
+       <Button onPress={handleSignIn} title='Entrar' color='white' />
       </View>    
 
       <View style={styles.container_btn}>

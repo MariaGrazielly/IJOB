@@ -5,6 +5,7 @@ import { Home } from './src/pages/Home';
 import { Loading } from './src/components/Loading';
 import { Login } from './src/pages/Login';
 import React from 'react';
+import {Cadastro} from './src/pages/Cadastro';
 
 export default function App() {
   const [fontsLoaded] = useFonts({Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black});
