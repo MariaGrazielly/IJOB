@@ -17,7 +17,7 @@ export default function App() {
       backgroundColor="transparent"
       translucent
       />
-      {fontsLoaded ? <Login /> : <Loading />}
+      {fontsLoaded ? <Cadastro /> : <Loading />}
 
     </Background>
   );

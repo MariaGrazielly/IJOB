@@ -48,7 +48,7 @@ export function Login() {
         />
 
       <View style={styles.btn}>
-       <Button onPress={handleSignIn} title='Entrar' color='white' />
+       <Button onPress={handleSignIn} title='Entrar'  />
       </View>    
 
       <View style={styles.container_btn}>

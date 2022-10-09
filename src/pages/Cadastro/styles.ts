@@ -2,14 +2,19 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 
-    container:{},
+    container:{
+        flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    },
     btn:{
         textAlign:'center',
-        backgroundColor:'red',
-        alignItems:'center',
-        margin:10,
-        height:'15%',
-        borderRadius:10
+        width: '100%', 
+        height: 40, 
+        marginBottom: 10,
+        borderRadius: 4,
+        backgroundColor: '#007EF3',
+        
 },
 
 
