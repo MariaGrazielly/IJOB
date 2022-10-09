@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, { useState } from 'react';
-import { Text,Button, TouchableOpacity, View, Alert } from 'react-native';
+import { Text, Button, TouchableOpacity, View, Alert } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Inputs } from '../../components/Input';
 import { styles } from './styles';
@@ -38,7 +38,11 @@ export function Cadastro() {
         />
 
       
-       <TouchableOpacity  onPress={handleCreateAccont} style={styles.btn}><Text>cadastro</Text></TouchableOpacity>
+       <TouchableOpacity  
+       onPress={handleCreateAccont} 
+       style={styles.btn}>
+        <Text>cadastro</Text>
+        </TouchableOpacity>
          
       
       </View>   

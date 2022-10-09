@@ -8,10 +8,14 @@ import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
 import { Inputs } from '../../components/Input';
 import { GoogleSigninButton } from 'react-native-google-signin';
+import {useNavigation} from '@react-navigation/native';
+import { propsStack } from '../../Models';
+
 //import  Icon  from 'react-native-vector-icons/FontAwesome5';
 
 export function Login() {
 
+    const navigation = useNavigation<propsStack>();
     const [email, setEmail] = React.useState("");
     const [senha, setSenha] = React.useState("");
   
@@ -22,10 +26,8 @@ export function Login() {
       signInWithEmailAndPassword(auth,email,senha )
       // userCredential passado em parametro teste
       .then((userCredential)=>{
-        console.log ("Logado!")
-        Alert.alert("Logado!")
         const user = userCredential.user;
-        console.log(user);
+        navigation.navigate("Home")
       })
       .catch (error =>{
         console.log (error)
@@ -53,7 +55,8 @@ export function Login() {
 
       <View style={styles.container_btn}>
         <TouchableOpacity>
-          <Text style={styles.title_btn}>Cadastre-se</Text>
+          <Text style={styles.title_btn}
+          onPress={()=> navigation.navigate("Cadastro")}>Cadastre-se</Text>
         </TouchableOpacity>
         <TouchableOpacity>
             <Text style={styles.title_btn}>Redefinir senha</Text>

@@ -6,6 +6,7 @@ import { Loading } from './src/components/Loading';
 import { Login } from './src/pages/Login';
 import React from 'react';
 import {Cadastro} from './src/pages/Cadastro';
+import { Routes } from './src/routes/index';
 
 export default function App() {
   const [fontsLoaded] = useFonts({Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_900Black});
@@ -17,7 +18,10 @@ export default function App() {
       backgroundColor="transparent"
       translucent
       />
-      {fontsLoaded ? <Cadastro /> : <Loading />}
+      {fontsLoaded ? 
+      <Routes /> 
+      : 
+      <Loading />}
 
     </Background>
   );
