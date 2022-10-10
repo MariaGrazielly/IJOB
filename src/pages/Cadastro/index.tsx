@@ -11,21 +11,27 @@ import { propsStack } from '../../Models';
 export function Cadastro() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-
+    const [confirmaSenha, setConfirmaSenha] = useState("");
+    
     const navigation = useNavigation<propsStack>();
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+
+    
     const handleCreateAccont =() =>{
+      if (confirmaSenha === senha){
       createUserWithEmailAndPassword(auth,email,senha)
       // userCredential passado em parametro teste
       .then((userCredential)=>{
-        console.log ('conta criada');
+        Alert.alert('conta criada');
         const user = userCredential.user;
         console.log (user);
       })
       .catch(error =>{console.log (error)
         Alert.alert(error.menssage);
       })
+    }
+    else {Alert.alert("Senhas não são iguais, por favor tente novamente.")}
     }
     return(
       <ScrollView>
@@ -68,7 +74,7 @@ export function Cadastro() {
         <Text style={styles.label_input}>Confirmar Senha:</Text>
         <Inputs 
         titlo='Confirme sua Senha'
-        onChangeText={(text)=> setSenha(text)}
+        onChangeText={(text)=> setConfirmaSenha(text)}
         secureTextEntry
         />
 
