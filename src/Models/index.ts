@@ -8,7 +8,9 @@ export type propsNavigationStack = {
     Cadastro?:{
         name?: string;
     }
+    RedefinirSenha: undefined;
     Search: undefined
+    
 }
 
 export type propsStack = NativeStackNavigationProp<propsNavigationStack>

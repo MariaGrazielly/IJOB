@@ -59,7 +59,8 @@ export function Login() {
           onPress={()=> navigation.navigate("Cadastro")}>Cadastre-se</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-            <Text style={styles.title_btn}>Redefinir senha</Text>
+            <Text style={styles.title_btn}
+            onPress={()=> navigation.navigate("RedefinirSenha")}>Redefinir senha</Text>
         </TouchableOpacity>
       </View>
 
