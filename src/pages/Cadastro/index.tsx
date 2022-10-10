@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, Alert, Image, ScrollView } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Inputs } from '../../components/Input';
@@ -9,18 +9,27 @@ import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 
 export function Cadastro() {
+   
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [nome, setNome] = useState("");
+    const [cpf, setCPF] = useState("");
+    
+    
     const [confirmaSenha, setConfirmaSenha] = useState("");
     
     const navigation = useNavigation<propsStack>();
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-
+    
+    
+    
+     
     
     const handleCreateAccont =() =>{
       if (confirmaSenha === senha){
-      createUserWithEmailAndPassword(auth,email,senha)
+     
+      createUserWithEmailAndPassword(auth,email,senha,)
       // userCredential passado em parametro teste
       .then((userCredential)=>{
         Alert.alert('conta criada');
@@ -43,13 +52,13 @@ export function Cadastro() {
         <Text style={styles.label_input}>Nome:</Text>
         <Inputs 
         titlo='Nome completo'
-        onChangeText={(text)=> setEmail(text)}
+        onChangeText={(text)=> setNome(text)}
         />  
 
         <Text style={styles.label_input}>CPF:</Text>
         <Inputs 
         titlo='123.256.525-58'
-        onChangeText={(text)=> setEmail(text)}
+        onChangeText={(text)=> setCPF(text)}
         />  
 
         <Text style={styles.label_input}>Data de Nascimento:</Text>
