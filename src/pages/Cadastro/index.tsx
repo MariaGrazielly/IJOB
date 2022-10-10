@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, View, Alert, Image } from 'react-native';
+import { Text, TouchableOpacity, View, Alert, Image, ScrollView } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Inputs } from '../../components/Input';
 import { styles } from './styles';
@@ -28,6 +28,8 @@ export function Cadastro() {
       })
     }
     return(
+      <ScrollView>
+        
         <View style={styles.container}>
 
         <Image style={styles.imagem} source={require('../../assets/imag_test.png')} />
@@ -35,6 +37,18 @@ export function Cadastro() {
         <Text style={styles.label_input}>Nome:</Text>
         <Inputs 
         titlo='Nome completo'
+        onChangeText={(text)=> setEmail(text)}
+        />  
+
+        <Text style={styles.label_input}>CPF:</Text>
+        <Inputs 
+        titlo='123.256.525-58'
+        onChangeText={(text)=> setEmail(text)}
+        />  
+
+        <Text style={styles.label_input}>Data de Nascimento:</Text>
+        <Inputs 
+        titlo='10/11/1922'
         onChangeText={(text)=> setEmail(text)}
         />  
         
@@ -73,6 +87,7 @@ export function Cadastro() {
       </View>
       
       </View>   
+      </ScrollView>
     );
 
 }

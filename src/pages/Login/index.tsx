@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { View, Image, Text, Button, TouchableOpacity, Alert} from 'react-native';
+import { View, Image, Text, TouchableOpacity, Alert} from 'react-native';
 import {getAuth,signInWithEmailAndPassword,} from 'firebase/auth';
 import {initializeApp} from 'firebase/app';
 import {firebaseConfig} from './../../../back-end/firebase-config';
@@ -50,7 +50,9 @@ export function Login() {
         />
 
       <View style={styles.btn}>
-       <Button onPress={handleSignIn} title='Entrar'  />
+       <TouchableOpacity onPress={handleSignIn}>
+        <Text style={styles.btn_entrar}>Entrar</Text>
+       </TouchableOpacity>
       </View>    
 
       <View style={styles.container_btn}>

@@ -15,15 +15,23 @@ export const styles = StyleSheet.create({
   },
   btn:{
   width: '100%', 
-  height: 40, 
+  height: 50, 
   marginBottom: 10,
   borderRadius: 4,
   backgroundColor: '#007EF3',
-  color: 'white',
+  justifyContent: 'center',
   },
+
+  btn_entrar:{
+    textAlign: "center",
+    fontSize: 20,
+    color: '#fff'
+  },
+
   title_btn:{
     fontSize: 17,
   }, 
+
   container_btn:{
     width: '100%',
     flexDirection: 'row',
