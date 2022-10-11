@@ -35,6 +35,7 @@ export function Cadastro() {
         Alert.alert('conta criada');
         const user = userCredential.user;
         console.log (user);
+        navigation.navigate('Login');
       })
       .catch(error =>{console.log (error)
         Alert.alert(error.menssage);
