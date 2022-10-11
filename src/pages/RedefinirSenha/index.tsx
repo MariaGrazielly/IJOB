@@ -20,7 +20,7 @@ export function RedefinirSenha() {
     //redefinir Senha
     await sendPasswordResetEmail(auth,email)
         .then(() => {
-            Alert.alert('Verifique sua caixa de e-mail.')
+            Alert.alert('Verifique sua caixa de Entrada e/ou Spam.')
             navigation.navigate('Login')
             console.log("Sucesso")
         })

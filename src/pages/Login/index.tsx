@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { View, Image, Text, TouchableOpacity, Alert} from 'react-native';
 import {getAuth,signInWithEmailAndPassword} from 'firebase/auth';
@@ -7,9 +7,10 @@ import {firebaseConfig} from './../../../back-end/firebase-config';
 import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
 import { Inputs } from '../../components/Input';
-import { GoogleSigninButton } from 'react-native-google-signin';
+import * as Google from 'expo-google-app-auth'
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
+import { interpolateSharableColor } from 'react-native-reanimated';
 
 //import  Icon  from 'react-native-vector-icons/FontAwesome5';
 
@@ -18,10 +19,35 @@ export function Login() {
     const navigation = useNavigation<propsStack>();
     const [email, setEmail] = React.useState("");
     const [senha, setSenha] = React.useState("");
-  
+    const [acessToken,setAcessToken] = React.useState("");
+    const [acessInfo,setAcessInfo] = React.useState("");
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     
+    async function singInGoogleAsync() {
+      try{
+        const result = await Google.logInAsync({
+          androidClientId :"",
+          iosClientId:"",
+          scopes:["profile","email"]
+ });
+      
+      if (result.type ==="success"){
+          setAcessToken(acessToken);
+      }else{
+        console.log("permissão negada");
+      }
+    }
+      catch(e){
+        console.log(e);
+      }
+    }
+
+    async function  getUserData() {
+      
+    }
+
+    function showUserInfo(){}
 
     const handleSignIn =() => {
       signInWithEmailAndPassword(auth,email,senha )
@@ -75,7 +101,10 @@ export function Login() {
       </View>
 
       <View style={styles.login_google}>
-        <Text style={styles.texto_google}>LOGIN GOOGLE</Text>
+      <TouchableOpacity onPress={acessToken? getUserData:singInGoogleAsync}>
+      
+      <Text style={styles.texto_google}>LOGIN GOOGLE</Text>
+      </TouchableOpacity>
       </View>
 
     </View>
