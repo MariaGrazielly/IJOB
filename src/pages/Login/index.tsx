@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { View, Image, Text, TouchableOpacity, Alert} from 'react-native';
-import {getAuth,signInWithEmailAndPassword,} from 'firebase/auth';
+import {getAuth,signInWithEmailAndPassword} from 'firebase/auth';
 import {initializeApp} from 'firebase/app';
 import {firebaseConfig} from './../../../back-end/firebase-config';
 import { styles } from './styles';
@@ -21,6 +21,7 @@ export function Login() {
   
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    
 
     const handleSignIn =() => {
       signInWithEmailAndPassword(auth,email,senha )

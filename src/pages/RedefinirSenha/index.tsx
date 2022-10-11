@@ -1,12 +1,48 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-
-
+import React, { useState } from 'react';
+import { View, Text,TouchableOpacity, Alert } from 'react-native';
+import auth, { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import {useNavigation} from '@react-navigation/native';
+import { propsStack } from '../../Models';
+import { firebaseConfig } from '../../../back-end/firebase-config';
+import { initializeApp } from 'firebase/app';
+import { Inputs } from '../../components/Input';
+import { styles } from './styles';
 
 export function RedefinirSenha() {
+  const [email, setEmail] = useState("");
+  const navigation = useNavigation<propsStack>();
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  async function forgotPassword() {
+    //redefinir Senha
+    await sendPasswordResetEmail(auth,email)
+        .then((result) => {
+            Alert.alert('Verifique sua caixa de e-mail.')
+            //navigation.navigate('Login')
+            console.log("Sucesso", result )
+        })
+    .catch((error) => {
+      console.log("error => ", error)
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        //Alert.alert(errorMessage);
+    });
+}
+
   return (
-    <View >
-        <Text>Teste</Text>
+    <View style={styles.container} >
+    <Inputs 
+        titlo='E-mail'
+        onChangeText={(text)=> setEmail(text)}
+        />
+      <View >
+        <TouchableOpacity onPress={()=> {forgotPassword} }>
+            <Text 
+            >Redefinir senha</Text>
+        </TouchableOpacity>
+        </View>
     </View>
   );
 }
