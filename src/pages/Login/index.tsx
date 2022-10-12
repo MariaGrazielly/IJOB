@@ -57,8 +57,12 @@ export function Login() {
         navigation.navigate("Home")
       })
       .catch (error =>{
-        Alert.alert ('Usuario e/ou senha incorreta')
-        console.log (error)
+        {
+          email == "" && senha == "" ? 
+          Alert.alert ('Por favor, preencha todos os campos.') 
+          : 
+          Alert.alert ('Usuario e/ou senha incorreta')
+        }
       })
     }
     
