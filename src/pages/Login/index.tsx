@@ -10,7 +10,7 @@ import { Inputs } from '../../components/Input';
 import * as Google from 'expo-google-app-auth'
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
-import { interpolateSharableColor } from 'react-native-reanimated';
+//import { interpolateSharableColor } from 'react-native-reanimated';
 
 //import  Icon  from 'react-native-vector-icons/FontAwesome5';
 
@@ -59,7 +59,7 @@ export function Login() {
       .catch (error =>{
         {
           email == "" && senha == "" ? 
-          Alert.alert ('Por favor, preencha todos os campos.') 
+          Alert.alert ('Por favor, informe seu email e senha.') 
           : 
           Alert.alert ('Usuario e/ou senha incorreta')
         }
@@ -105,9 +105,10 @@ export function Login() {
       </View>
 
       <View style={styles.login_google}>
-      <TouchableOpacity onPress={acessToken? getUserData:singInGoogleAsync}>
-      
-      <Text style={styles.texto_google}>LOGIN GOOGLE</Text>
+       <Text style={styles.label_login_google}>Acesse com sua conta google</Text>
+      <TouchableOpacity style={styles.btn_google}  onPress={acessToken? getUserData:singInGoogleAsync}>
+        <Image style={styles.img_google} source={require('../../assets/google.png')}/>
+        <Text style={styles.texto_google}>Google</Text>
       </TouchableOpacity>
       </View>
 

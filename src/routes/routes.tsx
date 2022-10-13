@@ -21,27 +21,18 @@ function LogoTitle() {
 
 export function TORoutes(){
     return (
-        <Navigator initialRouteName="Login" screenOptions={{headerStyle:{backgroundColor:"#CDCCCC"}}}>
+        <Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
                 <Screen name="Login" 
                 component={Login} 
-                options={{headerShown: false}} 
                 />
 
                 <Screen name="Home" 
                 component={Home} 
-                options={{
-                    headerTitle: ()=> <LogoTitle />, 
-                    headerTitleAlign:"left",
-                    headerRight: ()=>(
-                    <Button
-                    onPress={() => alert('This is a button!')}
-                    title="Info"
-                    />
-                )}} />
+                />
 
                 <Screen name="Cadastro" component={Cadastro} />
-                <Screen name="RedefinirSenha" component={RedefinirSenha} />
 
+                <Screen name="RedefinirSenha" component={RedefinirSenha} />
         </Navigator>
     )
 }

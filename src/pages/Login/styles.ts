@@ -20,6 +20,8 @@ export const styles = StyleSheet.create({
   borderRadius: 4,
   backgroundColor: '#007EF3',
   justifyContent: 'center',
+  shadowColor: "#888",
+  shadowOpacity: 0.7,
   },
 
   btn_entrar:{
@@ -39,6 +41,7 @@ export const styles = StyleSheet.create({
     marginBottom: 40,
     padding: 4,
   },
+  
   linha:{
     width:'100%',
     flexDirection: 'row',
@@ -55,13 +58,41 @@ export const styles = StyleSheet.create({
     width: "45%",
     borderTopWidth: 1,
   },
+
   login_google:{
-    marginTop: 50,
-    backgroundColor: "white",
+    width: "100%",
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  label_login_google:{
+    marginBottom: 25,
+    fontSize: 20,
+    fontWeight: '300',
+    textAlign: 'center',
+  },
+  btn_google:{
+    width: "54%",
+    flexDirection: "row",
+    borderRadius: 8,   
+    justifyContent: 'center', 
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#888',
+    shadowOpacity: 0.6,
+    shadowRadius: 4,
+    padding: 5,
+  },
+  img_google:{
+    width: 45,
+    height: 45,
+    backgroundColor: "#FFFFFF",
+    marginRight: 15,
+    borderRadius: 20,
   },
   texto_google:{
     fontSize: 30,
-    color: 'blue',
+    color: '#888',
     padding: 4,
+    backgroundColor: "#fff",
   }
 });

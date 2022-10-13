@@ -7,6 +7,8 @@ import { Inputs } from '../../components/Input';
 import { styles } from './styles';
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
+import { Header } from '../../components/Header';
+
 
 export function Cadastro() {
    
@@ -22,9 +24,6 @@ export function Cadastro() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     
-    
-    
-     
     
     const handleCreateAccont =() =>{
       if (confirmaSenha === senha){
@@ -45,7 +44,8 @@ export function Cadastro() {
     }
     return(
       <ScrollView>
-        
+        <Header title='Cadastro'/>
+        <View>
         <View style={styles.container}>
 
         <Image style={styles.imagem} source={require('../../assets/imag_test.png')} />
@@ -96,13 +96,14 @@ export function Cadastro() {
       </TouchableOpacity>
 
       <TouchableOpacity  
-        onPress={()=> navigation.navigate("Login")} 
+        onPress={()=> navigation.goBack()} 
         style={styles.btn_cancelar}>
         <Text style={styles.label_btn}>Cancelar</Text>
       </TouchableOpacity>
       </View>
       
       </View>   
+      </View>
       </ScrollView>
     );
 
