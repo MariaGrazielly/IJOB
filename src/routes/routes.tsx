@@ -7,6 +7,8 @@ import { propsNavigationStack } from '../Models';
 import { Button, Image } from 'react-native';
 import  Icon  from 'react-native-vector-icons/FontAwesome5'
 import { RedefinirSenha } from '../pages/RedefinirSenha';
+import { EditarPerfil } from '../pages/EditarPerfil';
+import { CadastrarEmpresa } from '../pages/CadastrarEmpresa';
 
 const {Navigator, Screen} = createNativeStackNavigator<propsNavigationStack>();
 
@@ -33,6 +35,10 @@ export function TORoutes(){
                 <Screen name="Cadastro" component={Cadastro} />
 
                 <Screen name="RedefinirSenha" component={RedefinirSenha} />
+
+                <Screen name="Editarperfil" component={EditarPerfil} />
+
+                <Screen name="CadastrarEmpresa" component={CadastrarEmpresa} />
         </Navigator>
     )
 }

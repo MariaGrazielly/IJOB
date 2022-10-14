@@ -9,6 +9,8 @@ export type propsNavigationStack = {
         name?: string;
     }
     RedefinirSenha: undefined;
+    Editarperfil: undefined;
+    CadastrarEmpresa: undefined;
     Search: undefined
     
 }

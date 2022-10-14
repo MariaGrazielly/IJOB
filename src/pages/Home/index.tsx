@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text} from 'react-native';
+import { View, Text, ScrollView} from 'react-native';
+import { Header } from '../../components/Header';
 
 import { styles } from './styles';
 
 export function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.teste}>Amém</Text>
-    </View>
+    <ScrollView>
+      <Header />
+    </ScrollView>
   );
 }

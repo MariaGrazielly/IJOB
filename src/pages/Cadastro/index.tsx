@@ -44,7 +44,7 @@ export function Cadastro() {
     }
     return(
       <ScrollView>
-        <Header title='Cadastro'/>
+        <Header title='Cadastro' icone_imag/>
         <View>
         <View style={styles.container}>
 
