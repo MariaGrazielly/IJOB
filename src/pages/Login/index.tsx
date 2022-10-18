@@ -7,7 +7,7 @@ import {firebaseConfig} from './../../../back-end/firebase-config';
 import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
 import { Inputs } from '../../components/Input';
-import * as Google from 'expo-google-app-auth'
+
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 //import { interpolateSharableColor } from 'react-native-reanimated';
@@ -19,37 +19,13 @@ export function Login() {
     const navigation = useNavigation<propsStack>();
     const [email, setEmail] = React.useState("");
     const [senha, setSenha] = React.useState("");
-    const [acessToken,setAcessToken] = React.useState("");
-    const [acessInfo,setAcessInfo] = React.useState("");
+   
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     
-    async function singInGoogleAsync() {
-      try{
-        const result = await Google.logInAsync({
-          androidClientId :"",
-          iosClientId:"",
-          scopes:["profile","email"]
- });
-      
-      if (result.type ==="success"){
-          setAcessToken(acessToken);
-      }else{
-        console.log("permissão negada");
-      }
-    }
-      catch(e){
-        console.log(e);
-      }
-    }
-
-    async function  getUserData() {
-      
-    }
-
-    function showUserInfo(){}
-
+    
     const handleSignIn =() => {
+      
       signInWithEmailAndPassword(auth,email,senha )
       // userCredential passado em parametro teste
       .then((userCredential)=>{
@@ -106,7 +82,9 @@ export function Login() {
 
       <View style={styles.login_google}>
        <Text style={styles.label_login_google}>Acesse com sua conta google</Text>
-      <TouchableOpacity style={styles.btn_google}  onPress={acessToken? getUserData:singInGoogleAsync}>
+
+      <TouchableOpacity style={styles.btn_google}  >
+
         <Image style={styles.img_google} source={require('../../assets/google.png')}/>
         <Text style={styles.texto_google}>Google</Text>
       </TouchableOpacity>

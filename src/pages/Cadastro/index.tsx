@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, TouchableOpacity, View, Alert, Image, ScrollView } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Inputs } from '../../components/Input';
@@ -8,7 +8,8 @@ import { styles } from './styles';
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 import { Header } from '../../components/Header';
-
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
 export function Cadastro() {
    
@@ -16,32 +17,52 @@ export function Cadastro() {
     const [senha, setSenha] = useState("");
     const [nome, setNome] = useState("");
     const [cpf, setCPF] = useState("");
-    
-    
+    const [dataNascimento, setDataNascimento] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
+
     
     const navigation = useNavigation<propsStack>();
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
     
-    
-    const handleCreateAccont =() =>{
-      if (confirmaSenha === senha){
-     
-      createUserWithEmailAndPassword(auth,email,senha,)
-      // userCredential passado em parametro teste
-      .then((userCredential)=>{
-        Alert.alert('conta criada');
-        const user = userCredential.user;
-        console.log (user);
-        navigation.navigate('Login');
-      })
-      .catch(error =>{console.log (error)
-        Alert.alert(error.menssage);
-      })
-    }
-    else {Alert.alert("Senhas não são iguais, por favor tente novamente.")}
-    }
+    const handleCreateAccont = async () =>{
+      if (cpf === "" && nome === "" && dataNascimento === ""){
+        Alert.alert ("Complete os campos em branco");
+      }
+      else {
+        if (confirmaSenha === senha){
+          
+          try {
+            const docRef = await addDoc(collection(db, "users"), {
+              cpf: cpf,
+              dataNascimento: dataNascimento,
+              name: nome
+              
+          });
+          
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+      
+        createUserWithEmailAndPassword(auth,email,senha)
+        // função de criação de conta
+          .then((userCredential)=>{
+            Alert.alert('conta criada');
+            const user = userCredential.user;
+            console.log (user);
+            navigation.navigate('Login');
+          })
+          .catch(error =>{console.log (error)
+            Alert.alert(error.menssage);
+          })
+      }
+      else {Alert.alert("Senhas não são iguais, por favor tente novamente.")}
+    }}
+  
+
+
     return(
       <ScrollView>
         <Header title='Cadastro' icone_imag/>
@@ -65,7 +86,7 @@ export function Cadastro() {
         <Text style={styles.label_input}>Data de Nascimento:</Text>
         <Inputs 
         titlo='10/11/1922'
-        onChangeText={(text)=> setEmail(text)}
+        onChangeText={(text)=> setDataNascimento(text)}
         />  
         
         <Text style={styles.label_input}>E-mail:</Text>
