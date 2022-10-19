@@ -63,7 +63,7 @@ export function Header({title, icone_imag}: HeaderProps) {
                                     showSidebar()}}>
                                     <Text style={styles.label_navigator}>Cadastrar Empresa</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={()=> navigation.goBack()}>
+                                <TouchableOpacity onPress={()=> navigation.navigate('Login')}>
                                     <Text style={styles.label_Sair_navigator}>Sair</Text>
                                 </TouchableOpacity>
                             </View>

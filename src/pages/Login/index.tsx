@@ -10,6 +10,7 @@ import { Inputs } from '../../components/Input';
 
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
+import { Background } from '../../components/Background';
 //import { interpolateSharableColor } from 'react-native-reanimated';
 
 //import  Icon  from 'react-native-vector-icons/FontAwesome5';
@@ -44,6 +45,7 @@ export function Login() {
     
     
   return (
+    <Background>
     <View style={styles.container}>
         <Image source={logoImg} />
         <Text style={styles.title}>Acesse sua conta</Text>
@@ -91,5 +93,6 @@ export function Login() {
       </View>
 
     </View>
+    </Background>
   );
 }

@@ -10,6 +10,7 @@ import { propsStack } from '../../Models';
 import { Header } from '../../components/Header';
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
+import { Background } from '../../components/Background';
 
 export function Cadastro() {
    
@@ -28,7 +29,7 @@ export function Cadastro() {
     
     const handleCreateAccont = async () =>{
       if (cpf === "" && nome === "" && dataNascimento === ""){
-        Alert.alert ("Complete os campos em branco");
+        Alert.alert ("Complete os campos em branco.");
       }
       else {
         if (confirmaSenha === senha){
@@ -64,8 +65,9 @@ export function Cadastro() {
 
 
     return(
+      <Background>
       <ScrollView>
-        <Header title='Cadastro' icone_imag/>
+        <Header title='Cadastro' icone_imag />
         <View>
         <View style={styles.container}>
 
@@ -126,6 +128,7 @@ export function Cadastro() {
       </View>   
       </View>
       </ScrollView>
+      </Background>
     );
 
 }
