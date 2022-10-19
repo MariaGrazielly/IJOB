@@ -36,7 +36,7 @@ export function CadastrarEmpresa() {
           }
           else{
           try {
-            const docRef = await addDoc(collection(db, "users"), {
+            const docRef = await addDoc(collection(db, "createUserCnpj"), {
               nomeEmpresa: nomeEmpresa,
               cpf_cnpj: cpf_cnpj,
               whatsapp: whatsapp,
