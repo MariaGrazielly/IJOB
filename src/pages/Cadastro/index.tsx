@@ -11,7 +11,8 @@ import { Header } from '../../components/Header';
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { Background } from '../../components/Background';
-
+import * as ImagePicker from 'expo-image-picker';
+import { getStorage, ref } from "firebase/storage";
 export function Cadastro() {
    
     const [email, setEmail] = useState("");
@@ -20,25 +21,53 @@ export function Cadastro() {
     const [cpf, setCPF] = useState("");
     const [dataNascimento, setDataNascimento] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
-
+    const [image,setImage] = useState (null);
+    
     
     const navigation = useNavigation<propsStack>();
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
+    const storage = getStorage();
+    
+
+
+
+
+    const pickImage = async () => {
+      // No permissions request is necessary for launching the image library
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      console.log(result);
+  
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
+    };
     
     const handleCreateAccont = async () =>{
+
       if (cpf === "" && nome === "" && dataNascimento === ""){
+
+        
         Alert.alert ("Complete os campos em branco.");
       }
       else {
+
+        
         if (confirmaSenha === senha){
           
           try {
             const docRef = await addDoc(collection(db, "users"), {
               cpf: cpf,
               dataNascimento: dataNascimento,
-              name: nome
+              name: nome,
+              image: image
               
           });
           
@@ -70,8 +99,15 @@ export function Cadastro() {
         <Header title='Cadastro' icone_imag />
         <View>
         <View style={styles.container}>
-
-        <Image style={styles.imagem} source={require('../../assets/imag_test.png')} />
+        
+        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+       
+        <TouchableOpacity  
+            onPress={pickImage} 
+            style={styles.btn_cadastrar}>
+            <Text style={styles.label_btn}>foto</Text>
+            
+        </TouchableOpacity>
 
         <Text style={styles.label_input}>Nome:</Text>
         <Inputs 
