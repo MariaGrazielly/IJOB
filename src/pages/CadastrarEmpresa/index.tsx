@@ -1,6 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import { initializeApp } from 'firebase/app';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import React, { useState } from 'react';
 import {ScrollView, View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
+import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
 import { Inputs } from '../../components/Input';
@@ -10,8 +13,45 @@ import { styles } from './styles';
 
 export function CadastrarEmpresa() {
 
-  const navigation = useNavigation<propsStack>();
+  const [nomeEmpresa,setNomeEmpresa] = useState("");
+  const [cpf_cnpj,setCpf_cnpj] = useState("");
+  const [whatsapp,setWhatsapp] = useState("");
+  const [celular,setCelular] = useState("");
+  const [cep,setCep] = useState("");
+  const [rua,setRua] = useState("");
+  const [bairro,setBairro] = useState("");
+  const [cidade,setCidade] = useState("");
+  const [uf,setUf] = useState("");
+  const [servicos,setServicos] = useState("");
 
+
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const navigation = useNavigation<propsStack>();
+  const handleCreateAccont = async () =>{
+
+    
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            nomeEmpresa: nomeEmpresa,
+            cpf_cnpj: cpf_cnpj,
+            whatsapp: whatsapp,
+            celular: celular,
+            cep: cep,
+            rua: rua,
+            bairro: bairro,
+            cidade : cidade,
+            uf : uf,
+            servicos : servicos
+            
+        });
+        
+          console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      }
 
   return (
     <Background>
