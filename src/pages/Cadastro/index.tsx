@@ -29,7 +29,7 @@ export function Cadastro() {
     const auth = getAuth(app);
     const db = getFirestore(app);
     const storage = getStorage();
-    
+    const Ref = ref(storage, "/imgPerfil" );
 
 
 
@@ -44,8 +44,11 @@ export function Cadastro() {
       });
   
       console.log(result);
+      
   
       if (!result.cancelled) {
+        //erro no codigo do vscode, não tem nada haver o sublinhado
+        //https://github.com/expo/expo/issues/6407
         setImage(result.uri);
       }
     };
