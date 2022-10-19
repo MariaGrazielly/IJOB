@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 import { styles } from './styles';
+import { getAuth, signOut } from "firebase/auth";
 
 interface HeaderProps{
     title?: string;
@@ -13,9 +14,20 @@ interface HeaderProps{
 export function Header({title, icone_imag}: HeaderProps) {
 
     const navigation = useNavigation<propsStack>();
-
+    const auth = getAuth();
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
+
+    const exit = ()=> {
+        //função de deslogar do banco
+    signOut(auth).then(() => {
+       navigation.navigate('Login');
+       
+      }).catch((error) => {
+        
+      });
+      
+    }
 
   return (
     <View style={styles.header}>
@@ -63,7 +75,7 @@ export function Header({title, icone_imag}: HeaderProps) {
                                     showSidebar()}}>
                                     <Text style={styles.label_navigator}>Cadastrar Empresa</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={()=> navigation.navigate('Login')}>
+                                <TouchableOpacity onPress={exit}>
                                     <Text style={styles.label_Sair_navigator}>Sair</Text>
                                 </TouchableOpacity>
                             </View>
