@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 25,
+    marginTop: 10,
   },
 
   inputPesquisar:{

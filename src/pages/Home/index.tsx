@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import { CardServico } from '../../components/CardServico';
 import { Header } from '../../components/Header';
 
 import { styles } from './styles';
@@ -25,6 +26,12 @@ export function Home() {
      <Icon style={styles.iconPesquisar} name="magnifier" />
      </TouchableOpacity>
     </View>
+
+    <CardServico
+    name_empresa='Borracharia'
+    cidade='Juazeiro do norte'
+    estado='CE'
+    />
     </ScrollView>
   );
 }
