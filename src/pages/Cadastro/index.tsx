@@ -12,7 +12,7 @@ import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { Background } from '../../components/Background';
 import * as ImagePicker from 'expo-image-picker';
-import { getStorage, ref } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 export function Cadastro() {
    
     const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ export function Cadastro() {
     const [cpf, setCPF] = useState("");
     const [dataNascimento, setDataNascimento] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
-    const [image,setImage] = useState (null);
+    const [image, setImage] = useState(null);
     
     
     const navigation = useNavigation<propsStack>();
@@ -29,7 +29,7 @@ export function Cadastro() {
     const auth = getAuth(app);
     const db = getFirestore(app);
     const storage = getStorage();
-    const Ref = ref(storage, "/imgPerfil" );
+    
 
 
 
@@ -37,21 +37,27 @@ export function Cadastro() {
     const pickImage = async () => {
       // No permissions request is necessary for launching the image library
       let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
+        
       });
   
       console.log(result);
-      
+      setImage (result.uri);
   
       if (!result.cancelled) {
-        //erro no codigo do vscode, não tem nada haver o sublinhado
-        //https://github.com/expo/expo/issues/6407
-        setImage(result.uri);
+        
+        const Ref = ref(storage, "imgPerfil/" );
+        // + result.fileName
+        var img = await fetch(result.uri);
+        const bytes = await img.blob();
+        await uploadBytes(Ref, bytes);
+        //var url = getDownloadURL(ref(storage, 'imgPerfil/'))
       }
     };
+    
     
     const handleCreateAccont = async () =>{
 
@@ -70,7 +76,7 @@ export function Cadastro() {
               cpf: cpf,
               dataNascimento: dataNascimento,
               name: nome,
-              image: image
+            // image: 
               
           });
           
