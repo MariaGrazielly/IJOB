@@ -48,13 +48,24 @@ export function Cadastro() {
       setImage (result.uri);
   
       if (!result.cancelled) {
+
+        console.log("Filename", result.uri);
+
+        let test = result.uri;
+
+        let palavraDividida =  test.split("/");
+
+        console.log("palavraDividida", palavraDividida[palavraDividida.length - 1])
+        let ultimoElemento = palavraDividida[palavraDividida.length - 1] ;
         
-        const Ref = ref(storage, "imgPerfil/" );
+        const Ref = ref(storage, "imgPerfil/" + ultimoElemento );
         // + result.fileName
         var img = await fetch(result.uri);
         const bytes = await img.blob();
         await uploadBytes(Ref, bytes);
         //var url = getDownloadURL(ref(storage, 'imgPerfil/'))
+        //
+        //var url = https://firebasestorage.googleapis.com/v0/b/ijob-18669.appspot.com/o/imgPerfil%2Fnull?alt=media&token=ead9f44f-6b3a-4112-9e84-05805b175af7
       }
     };
     
