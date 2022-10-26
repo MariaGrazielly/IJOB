@@ -22,6 +22,7 @@ export function Cadastro() {
     const [dataNascimento, setDataNascimento] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
     const [image, setImage] = useState(null);
+    const [imgUrl,setImgUrl] = useState ('');
     
     
     const navigation = useNavigation<propsStack>();
@@ -63,9 +64,12 @@ export function Cadastro() {
         var img = await fetch(result.uri);
         const bytes = await img.blob();
         await uploadBytes(Ref, bytes);
-        //var url = getDownloadURL(ref(storage, 'imgPerfil/'))
-        //
-        //var url = https://firebasestorage.googleapis.com/v0/b/ijob-18669.appspot.com/o/imgPerfil%2Fnull?alt=media&token=ead9f44f-6b3a-4112-9e84-05805b175af7
+       
+        await getDownloadURL(ref(storage, "imgPerfil/" + ultimoElemento)).then((x)=>{
+          setImgUrl (x)
+        });
+
+       // if (imgUrl == undefined){ func()}
       }
     };
     
@@ -87,7 +91,7 @@ export function Cadastro() {
               cpf: cpf,
               dataNascimento: dataNascimento,
               name: nome,
-            // image: 
+             image: imgUrl
               
           });
           
