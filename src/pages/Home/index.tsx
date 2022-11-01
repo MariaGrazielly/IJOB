@@ -15,6 +15,7 @@ export function Home() {
   const db = getFirestore(app);
   const [dados, setDados] = useState<DocumentData[]>([]);
   console.log (dados);
+
   useEffect (
     ()=>
     onSnapshot(collection(db,'createUserCnpj'),(snapshot)=>
@@ -47,8 +48,18 @@ export function Home() {
     </View>
     {dados.map((dado)=>(
         
-           
-         <Text> {dado.nomeEmpresa}</Text>
+         <>
+         <Text>{dado.nomeEmpresa}</Text>
+         <Text>{dado.cidade}</Text>
+         <Text>{dado.whatsapp}</Text>
+         <Text>{dado.celular}</Text>
+         <Text>{dado.cep}</Text>
+         <Text>{dado.uf}</Text>
+         <Text>{dado.cidade}</Text>
+         <Text>{dado.bairro}</Text>
+         <Text>{dado.rua}</Text>
+         <Text>{dado.servicos}</Text>
+         </>
         
       ))}
 
