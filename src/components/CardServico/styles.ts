@@ -31,5 +31,36 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "500",
        
-    }
+    },
+
+    modal:{
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "rgba(52, 51, 51, 0.5)",
+    },
+    conteudoModal:{
+      width: "80%",
+      height: "60%",
+      borderRadius: 4,
+      padding: 15,
+      backgroundColor: "#fff",
+    },
+    infoModal:{
+      padding: 13,
+    },
+    dados:{
+      width: "100%",
+    },
+    fecharModal:{
+      backgroundColor: "#CDCCCC",
+      marginBottom: 10,
+      marginRight: 15,
+      padding: 12,
+      position: "absolute",
+      bottom: 0,
+      right: 0,
+      borderRadius: 4,
+    },
+
 });

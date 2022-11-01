@@ -46,28 +46,26 @@ export function Home() {
      <Icon style={styles.iconPesquisar} name="magnifier" />
      </TouchableOpacity>
     </View>
-    {dados.map((dado)=>(
+    {dados.map((dado, idex)=>(
+
+      <CardServico
+      key={idex}
+      name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}
+      cidade={dado.cidade? dado.cidade: "Sem Nome"}
+      estado={dado.cep? dado.cep: "Sem nome"}
+      rua={dado.rua? dado.rua: "Sem nome"}
+      bairro={dado.bairro? dado.bairro: "Sem nome"}
+      uf={dado.uf? dado.uf: "Sem nome"}
+      cep={dado.cep? dado.cep: "Sem nome"}
+      whatsapp={dado.whatsapp? dado.whatsapp: "Sem nome"}
+      servicos={dado.servicos? dado.servicos: "Sem nome"}
+      />
         
-         <>
-         <Text>{dado.nomeEmpresa}</Text>
-         <Text>{dado.cidade}</Text>
-         <Text>{dado.whatsapp}</Text>
-         <Text>{dado.celular}</Text>
-         <Text>{dado.cep}</Text>
-         <Text>{dado.uf}</Text>
-         <Text>{dado.cidade}</Text>
-         <Text>{dado.bairro}</Text>
-         <Text>{dado.rua}</Text>
-         <Text>{dado.servicos}</Text>
-         </>
+   
         
       ))}
 
-    <CardServico
-    name_empresa='Borracharia'
-    cidade='Juazeiro do norte'
-    estado='CE'
-    />
+
     </ScrollView>
   );
 }
