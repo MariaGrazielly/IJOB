@@ -52,18 +52,15 @@ export function Home() {
       key={idex}
       name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}
       cidade={dado.cidade? dado.cidade: "Sem Nome"}
-      estado={dado.cep? dado.cep: "Sem nome"}
+      estado={dado.uf? dado.uf: "Sem nome"}
       rua={dado.rua? dado.rua: "Sem nome"}
       bairro={dado.bairro? dado.bairro: "Sem nome"}
-      uf={dado.uf? dado.uf: "Sem nome"}
       cep={dado.cep? dado.cep: "Sem nome"}
       whatsapp={dado.whatsapp? dado.whatsapp: "Sem nome"}
       servicos={dado.servicos? dado.servicos: "Sem nome"}
       imagem={dado.imagemCnpj}
       />
-        
-   
-        
+                
       ))}
 
 

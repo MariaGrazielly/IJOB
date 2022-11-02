@@ -9,9 +9,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  container_img:{
-    
-  },
+
     img_empresa:{
         width: 75,
         height: 75,
@@ -48,10 +46,19 @@ export const styles = StyleSheet.create({
       backgroundColor: "#fff",
     },
     infoModal:{
-      padding: 13,
+      padding: 10,
     },
     dados:{
       width: "100%",
+      fontSize: 18,
+      fontWeight: "500",
+      backgroundColor: "rgba(100, 100, 100, 0.3)",
+    },
+    dadosInfo:{
+      fontSize: 17,
+      padding: 2,
+      backgroundColor: "rgba(100, 100, 100, 0.1)",
+      borderRadius: 8,
     },
     fecharModal:{
       backgroundColor: "#CDCCCC",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View, Image, Text, Modal } from 'react-native';
+import { TouchableOpacity, View, Image, Text, Modal, Linking } from 'react-native';
 
 
 import { styles } from './styles';
@@ -10,14 +10,13 @@ interface PropsInfoEmpresa{
     estado: string;
     rua: string;
     bairro: string;
-    uf: string;
     cep: string;
     whatsapp: string;
     servicos: string;
     imagem: string;
 }
 
-export function CardServico({name_empresa, cidade, estado, rua, bairro, uf, cep, whatsapp, servicos, imagem}: PropsInfoEmpresa) {
+export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, whatsapp, servicos, imagem}: PropsInfoEmpresa) {
 
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
@@ -26,12 +25,22 @@ export function CardServico({name_empresa, cidade, estado, rua, bairro, uf, cep,
     <>
     <TouchableOpacity style={styles.container} 
     onPress={showSidebar}>
-        <View style={styles.container_img}>
-            <Image style={styles.img_empresa} source={{uri: `${imagem}`}} />
+        <View>
+          {
+            imagem?
+            <Image style={styles.img_empresa} 
+            source={{uri: `${imagem}`}} 
+            />
+            :
+            <Image style={styles.img_empresa} 
+            source={require("../../../assets/sem-foto.jpg")} 
+            />
+          }
+
         </View>
         <View style={styles.info_empresa}>
             <Text style={styles.nomeEmpresa}>{name_empresa}</Text>
-            <Text style={styles.cidadeEmpresa}>Cidade: {cidade}-{estado}</Text>
+            <Text style={styles.cidadeEmpresa}>Cidade: {cidade} - {estado}</Text>
         </View>
     </TouchableOpacity>
 
@@ -41,34 +50,38 @@ export function CardServico({name_empresa, cidade, estado, rua, bairro, uf, cep,
           <View style={styles.modal}>
             <View style={styles.conteudoModal}>
               <View style={styles.infoModal}>
-                <Text>Empresa:</Text>
-                <Text>{name_empresa}</Text>
+                <Text style={styles.dados}>Empresa:</Text>
+                <Text style={styles.dadosInfo}>{name_empresa}</Text>
               </View>
 
               <View style={styles.infoModal}>
-                <Text>Endereço:</Text>
-                <Text style={styles.dados}>
+                <Text style={styles.dados}>Endereço:</Text>
+                <Text style={styles.dadosInfo}>
                   Rua: {rua}
                 </Text>  
-                <Text style={styles.dados}>
+                <Text style={styles.dadosInfo}>
                   Bairro: {bairro}
                 </Text>
-                <Text style={styles.dados}>
-                  Cidade-UF: {cidade}-{uf}
+                <Text style={styles.dadosInfo}>
+                  Cidade/Estado: {cidade} - {estado}
                 </Text>
-                <Text style={styles.dados}>  
+                <Text style={styles.dadosInfo}>  
                   CEP: {cep}
                 </Text>
               </View>
             
               <View style={styles.infoModal}>
-                <Text>Whatsapp:</Text>
-                <Text>{whatsapp}</Text>
+                <Text style={styles.dados}>Whatsapp:</Text>
+                <Text style={styles.dadosInfo}
+                 onPress={() => { 
+                  Linking.openURL(`https://api.whatsapp.com/send?phone=55${whatsapp}&text=Ol%C3%A1%2C%20`); 
+                }}> 
+                {whatsapp}</Text>
               </View>
 
               <View style={styles.infoModal}>
-                <Text>Serviços:</Text>
-                <Text>{servicos}</Text>
+                <Text style={styles.dados}>Serviços:</Text>
+                <Text style={styles.dadosInfo}>{servicos}</Text>
               </View>
 
               <View style={styles.fecharModal}>
