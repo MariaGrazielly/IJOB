@@ -1,7 +1,6 @@
-import { url } from 'inspector';
 import React, { useState } from 'react';
 import { TouchableOpacity, View, Image, Text, Modal } from 'react-native';
-import {WebView} from "react-native-webview"
+
 
 import { styles } from './styles';
 
