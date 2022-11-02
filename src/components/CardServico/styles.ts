@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
   },
     img_empresa:{
         width: 75,
-        height: 70,
+        height: 75,
+        borderRadius: 50,
     },
 
     info_empresa:{

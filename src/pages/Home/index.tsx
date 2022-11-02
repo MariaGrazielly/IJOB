@@ -59,6 +59,7 @@ export function Home() {
       cep={dado.cep? dado.cep: "Sem nome"}
       whatsapp={dado.whatsapp? dado.whatsapp: "Sem nome"}
       servicos={dado.servicos? dado.servicos: "Sem nome"}
+      imagem={dado.imagemCnpj}
       />
         
    

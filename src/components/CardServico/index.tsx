@@ -1,5 +1,7 @@
+import { url } from 'inspector';
 import React, { useState } from 'react';
 import { TouchableOpacity, View, Image, Text, Modal } from 'react-native';
+import {WebView} from "react-native-webview"
 
 import { styles } from './styles';
 
@@ -13,9 +15,10 @@ interface PropsInfoEmpresa{
     cep: string;
     whatsapp: string;
     servicos: string;
+    imagem: string;
 }
 
-export function CardServico({name_empresa, cidade, estado, rua, bairro, uf, cep, whatsapp, servicos}: PropsInfoEmpresa) {
+export function CardServico({name_empresa, cidade, estado, rua, bairro, uf, cep, whatsapp, servicos, imagem}: PropsInfoEmpresa) {
 
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
@@ -25,7 +28,7 @@ export function CardServico({name_empresa, cidade, estado, rua, bairro, uf, cep,
     <TouchableOpacity style={styles.container} 
     onPress={showSidebar}>
         <View style={styles.container_img}>
-            <Image style={styles.img_empresa} source={require("../../../src/assets/foto_empresa.png")} />
+            <Image style={styles.img_empresa} source={{uri: `${imagem}`}} />
         </View>
         <View style={styles.info_empresa}>
             <Text style={styles.nomeEmpresa}>{name_empresa}</Text>
