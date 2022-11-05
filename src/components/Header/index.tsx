@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import Icon2 from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 import { styles } from './styles';
@@ -59,7 +60,7 @@ export function Header({title, icone_imag}: HeaderProps) {
 
                             <View style={styles.imagem}>
                                 <Image style={styles.imag_menu} source={require('../../assets/imag_test.png')} />
-                                <Text style={styles.img_texto}>Usuário Teste</Text> 
+                                <Text style={styles.img_texto}></Text> 
                             </View>
                             
                             <View style={styles.linha_menu}></View>
@@ -68,18 +69,25 @@ export function Header({title, icone_imag}: HeaderProps) {
                                 <TouchableOpacity onPress={()=> {
                                     navigation.navigate("Editarperfil")
                                     showSidebar()}}>
-                                    <Text style={styles.label_navigator}>Editar Perfil</Text>
+                                    <Text style={styles.label_navigator}>
+                                       <Icon2 style={styles.label_navigator} name='edit'/> Editar Perfil</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={()=>{ 
                                     navigation.navigate("CadastrarEmpresa")
                                     showSidebar()}}>
-                                    <Text style={styles.label_navigator}>Cadastrar Empresa</Text>
+                                    <Text style={styles.label_navigator}>
+                                       <Icon2 style={styles.label_navigator} name='id-card-o' /> Cadastrar Empresa</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={exit}>
-                                    <Text style={styles.label_Sair_navigator}>Sair</Text>
-                                </TouchableOpacity>
-                            </View>
 
+                            </View>
+                            
+                            <View>
+                                
+                            <TouchableOpacity onPress={exit}>
+                                    <Text style={styles.label_Sair_navigator}>
+                                    <Icon style={styles.label_Sair_navigator} name="logout" /> Sair</Text>
+                            </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </Modal>

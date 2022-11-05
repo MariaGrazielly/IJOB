@@ -10,7 +10,7 @@ import { firebaseConfig } from '../../../back-end/firebase-config';
 
 export function Home() {
 
-  const [text, setText] = useState("");
+  const [localFiltro, setLocalFiltro] = useState("");
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const [dados, setDados] = useState<DocumentData[]>([]);
@@ -34,20 +34,21 @@ export function Home() {
       <TextInput 
       style={styles.inputPesquisar}
       placeholder='Pesquisar'
-      autoCorrect={false}
-      value={text}
-      onChangeText = {(text) => setText(text)}
+      onChangeText = {setLocalFiltro}
       />
 
     <TouchableOpacity style={styles.buttonIconPesquisar}>
-    
-      
-      
      <Icon style={styles.iconPesquisar} name="magnifier" />
      </TouchableOpacity>
     </View>
-    {dados.map((dado, idex)=>(
 
+    {dados.filter((dado)=>{
+      if(localFiltro == ""){
+        return dado
+      }else if(dado.nomeEmpresa.toLowerCase().includes(localFiltro.toLowerCase()) || dado.cidade.toLowerCase().includes(localFiltro.toLowerCase())){
+        return dado
+      }
+    }).map((dado, idex)=>(
       <CardServico
       key={idex}
       name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}

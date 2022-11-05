@@ -45,20 +45,21 @@ export const styles = StyleSheet.create({
         backgroundColor: "rgba(52, 51, 51, 0.5)",
     },
     icone_close_menu:{
-        padding: 15,
+        width: 50,
+        padding: 10,
         fontSize: 30,
         fontWeight: "600",
+        marginTop: 40,
     },
     modal_lista:{
         width: "50%",
         minHeight: "100%",
         backgroundColor: "#CDCCCC",
-        marginTop: "24%",
     },
     imagem:{
        width: "100%",
        alignItems: "center",
-       marginTop: 15, 
+       marginTop: 40, 
     },
 
     imag_menu:{
@@ -79,8 +80,9 @@ export const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     menu_navigator:{
-        padding: 20,
-
+        paddingLeft: 15,
+        paddingTop: 20,
+        marginBottom: 120,
     },
     label_navigator:{
         fontSize: 17,
@@ -90,7 +92,6 @@ export const styles = StyleSheet.create({
     },
     label_Sair_navigator:{
         textAlign: "center",
-        marginTop: "90%",
         fontSize: 20,
         fontWeight: "600",
     }
