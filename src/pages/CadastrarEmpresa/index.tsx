@@ -7,7 +7,7 @@ import {ScrollView, View, Image, Text, TextInput, TouchableOpacity, Alert } from
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
-import { Inputs } from '../../components/Input';
+import { Inputs, InputsMask } from '../../components/Input';
 import { propsStack } from '../../Models';
 import * as ImagePicker from 'expo-image-picker';
 import { styles } from './styles';
@@ -114,40 +114,40 @@ export function CadastrarEmpresa() {
           </TouchableOpacity>
 
           <Text style={styles.label_input}>Nome da empresa:</Text>
-          <Inputs titlo='Empresa'
+          <Inputs titloInput='Empresa'
           onChangeText={(text)=> setNomeEmpresa(text)}/>  
 
           <Text style={styles.label_input}>CNPJ ou CPF:</Text>
-          <Inputs titlo='10210310525'
+          <InputsMask titloInputMask='10210310525' type={'cnpj'} value={cpf_cnpj}
           onChangeText={(text)=> setCpf_cnpj(text)}/>   
 
           <Text style={styles.label_input}>Whatsapp:</Text>
-          <Inputs titlo='88925232356'
+          <InputsMask titloInputMask='88925232356' type="cel-phone" value={whatsapp}
           onChangeText={(text)=> setWhatsapp(text)}/>   
 
           <Text style={styles.label_input}>Celular:</Text>
-          <Inputs titlo='88925232356'
+          <InputsMask titloInputMask='88925232356' type={'cel-phone'} value={celular}
           onChangeText={(text)=> setCelular(text)}/>  
 
           <Text style={styles.label_input}>CEP:</Text>
-          <Inputs titlo='Cep da empresa'
+          <Inputs titloInput='Cep da empresa'
           onChangeText={(text)=> setCep(text)}/>  
           
           
           <Text style={styles.label_input}>Rua:</Text>
-          <Inputs titlo='Endereço da empresa'
+          <Inputs titloInput='Endereço da empresa'
           onChangeText={(text)=> setRua(text)}/>  
 
           <Text style={styles.label_input}>Bairro:</Text>
-          <Inputs titlo='Endereço da empresa'
+          <Inputs titloInput='Endereço da empresa'
           onChangeText={(text)=> setBairro(text)}/>  
 
           <Text style={styles.label_input}>Cidade:</Text>
-          <Inputs titlo='Endereço da empresa'
+          <Inputs titloInput='Endereço da empresa'
           onChangeText={(text)=> setCidade(text)}/>  
 
           <Text style={styles.label_input}>UF:</Text>
-          <Inputs titlo='Endereço da empresa'
+          <Inputs titloInput='Endereço da empresa'
           onChangeText={(text)=> setUf(text)}/>  
 
           <Text style={styles.label_input}>Serviços:</Text>

@@ -36,7 +36,7 @@ export function RedefinirSenha() {
   return (
     <View style={styles.container} >
     <Inputs 
-        titlo='E-mail'
+        titloInput='E-mail'
         onChangeText={setEmail}
         />
       <View >

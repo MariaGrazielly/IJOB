@@ -50,11 +50,11 @@ export function Login() {
         <Image source={logoImg} />
         <Text style={styles.title}>Acesse sua conta</Text>
         <Inputs 
-        titlo='E-mail'
+        titloInput='E-mail'
         onChangeText={(text)=> setEmail(text)}
         />
         <Inputs 
-        titlo='Senha'
+        titloInput='Senha'
         onChangeText={(text)=> setSenha(text)}
         secureTextEntry
         />

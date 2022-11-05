@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View, Alert, Image, ScrollView } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
-import { Inputs } from '../../components/Input';
+import { Inputs, InputsMask } from '../../components/Input';
 import { styles } from './styles';
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
@@ -13,6 +13,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { Background } from '../../components/Background';
 import * as ImagePicker from 'expo-image-picker';
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { text } from 'stream/consumers';
+
 export function Cadastro() {
    
     const [email, setEmail] = useState("");
@@ -135,38 +137,42 @@ export function Cadastro() {
 
         <Text style={styles.label_input}>Nome:</Text>
         <Inputs 
-        titlo='Nome completo'
+        titloInput='Nome completo'
         onChangeText={(text)=> setNome(text)}
         />  
 
         <Text style={styles.label_input}>CPF:</Text>
-        <Inputs 
-        titlo='123.256.525-58'
+        <InputsMask
+        titloInputMask='123.256.525-58'
+        type={'cpf'}
+        value={cpf}
         onChangeText={(text)=> setCPF(text)}
         />  
 
         <Text style={styles.label_input}>Data de Nascimento:</Text>
-        <Inputs 
-        titlo='10/11/1922'
+        <InputsMask
+        titloInputMask='10/11/1922'
+        type={'datetime'}
+        value={dataNascimento}
         onChangeText={(text)=> setDataNascimento(text)}
         />  
         
         <Text style={styles.label_input}>E-mail:</Text>
         <Inputs 
-        titlo='maria@gmail.com'
+        titloInput='maria@gmail.com'
         onChangeText={(text)=> setEmail(text)}
         />
 
         <Text style={styles.label_input}>Senha:</Text>
         <Inputs 
-        titlo='Escolha uma senha'
+        titloInput='Escolha uma senha'
         onChangeText={(text)=> setSenha(text)}
         secureTextEntry
         />
 
         <Text style={styles.label_input}>Confirmar Senha:</Text>
         <Inputs 
-        titlo='Confirme sua Senha'
+        titloInput='Confirme sua Senha'
         onChangeText={(text)=> setConfirmaSenha(text)}
         secureTextEntry
         />
