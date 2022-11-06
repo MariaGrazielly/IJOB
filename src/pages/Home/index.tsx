@@ -15,7 +15,7 @@ export function Home() {
   const db = getFirestore(app);
   const [dados, setDados] = useState<DocumentData[]>([]);
   const [localFiltro, setLocalFiltro] = useState <DocumentData[]>([]);
-
+  const [setarDados,setSetarDados] = useState ('');
   console.log (dados);
 
   useEffect (
@@ -33,6 +33,7 @@ export function Home() {
           const newData = dados.filter(dado=>{
             const itemData = dado.nomeEmpresa? dado.nomeEmpresa.toUpperCase(): ''.toUpperCase();
             const textData = text.toUpperCase();
+            setSetarDados (text);
             return itemData.indexOf(textData)> -1;
           })
           setLocalFiltro(newData);
@@ -53,12 +54,10 @@ export function Home() {
     }
       />
 
-    <TouchableOpacity style={styles.buttonIconPesquisar}>
-     <Icon style={styles.iconPesquisar} name="magnifier" />
-     </TouchableOpacity>
+    
     </View>
     
-    {
+    {setarDados ? (
     localFiltro.map((dado, idex)=>(
       <CardServico
       key={idex}
@@ -73,7 +72,24 @@ export function Home() {
       imagem={dado.imagemCnpj}
       />
                 
-      ))}
+      )))
+    :
+    dados.map((dado, idex)=>(
+      <CardServico
+      key={idex}
+      name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}
+      cidade={dado.cidade? dado.cidade: "Sem Nome"}
+      estado={dado.uf? dado.uf: "Sem nome"}
+      rua={dado.rua? dado.rua: "Sem nome"}
+      bairro={dado.bairro? dado.bairro: "Sem nome"}
+      cep={dado.cep? dado.cep: "Sem nome"}
+      whatsapp={dado.whatsapp? dado.whatsapp: "Sem nome"}
+      servicos={dado.servicos? dado.servicos: "Sem nome"}
+      imagem={dado.imagemCnpj}
+      />
+                
+      ))
+    }
 
 
     </ScrollView>
