@@ -10,10 +10,12 @@ import { firebaseConfig } from '../../../back-end/firebase-config';
 
 export function Home() {
 
-  const [localFiltro, setLocalFiltro] = useState("");
+  
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const [dados, setDados] = useState<DocumentData[]>([]);
+  const [localFiltro, setLocalFiltro] = useState <DocumentData[]>([]);
+
   console.log (dados);
 
   useEffect (
@@ -24,7 +26,20 @@ export function Home() {
 
   ),[])
   
-    
+   
+
+   const searchFilterFunction=(text: string )=>{
+        if(text){
+          const newData = dados.filter(dado=>{
+            const itemData = dado.nomeEmpresa? dado.nomeEmpresa.toUpperCase(): ''.toUpperCase();
+            const textData = text.toUpperCase();
+            return itemData.indexOf(textData)> -1;
+          })
+          setLocalFiltro(newData);
+        }else {
+          setLocalFiltro (dados);
+        }
+   }
 
   return (
     <ScrollView>
@@ -34,21 +49,17 @@ export function Home() {
       <TextInput 
       style={styles.inputPesquisar}
       placeholder='Pesquisar'
-      onChangeText = {setLocalFiltro}
+      onChange = {(event) =>{searchFilterFunction(event.nativeEvent.text)}
+    }
       />
 
     <TouchableOpacity style={styles.buttonIconPesquisar}>
      <Icon style={styles.iconPesquisar} name="magnifier" />
      </TouchableOpacity>
     </View>
-
-    {dados.filter((dado)=>{
-      if(localFiltro == ""){
-        return dado
-      }else if(dado.nomeEmpresa.toLowerCase().includes(localFiltro.toLowerCase()) || dado.cidade.toLowerCase().includes(localFiltro.toLowerCase())){
-        return dado
-      }
-    }).map((dado, idex)=>(
+    
+    {
+    localFiltro.map((dado, idex)=>(
       <CardServico
       key={idex}
       name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}

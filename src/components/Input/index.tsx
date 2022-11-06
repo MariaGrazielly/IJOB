@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextInput, TextInputProps } from 'react-native';
-import {TextInputMask, TextInputMaskProps} from 'react-native-masked-text'
+import {TextInputMask, TextInputMaskProps} from 'react-native-masked-text';
 
 interface Props extends TextInputProps{
     titloInput: string;
