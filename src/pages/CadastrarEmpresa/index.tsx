@@ -105,13 +105,16 @@ export function CadastrarEmpresa() {
         <Header />
         <View>
           <View style={styles.container}>
-          {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-          {/* <Image style={styles.imagem} source={require('../../assets/imag_test.png')} /> */}
+          {
+          image ? <Image style={styles.imagem} source={{ uri: image }} />
+          :
           <TouchableOpacity  
-            onPress={pickImage} 
-            style={styles.btn_cadastrar}>
-            <Text style={styles.label_btn}>adicione uma foto</Text>
+          onPress={pickImage}>
+          <Image style={styles.imagem} source={require('../../assets/imag_test.png')} />
           </TouchableOpacity>
+          }
+          
+
 
           <Text style={styles.label_input}>Nome da empresa:</Text>
           <Inputs titloInput='Empresa'
@@ -147,7 +150,7 @@ export function CadastrarEmpresa() {
           onChangeText={(text)=> setCidade(text)}/>  
 
           <Text style={styles.label_input}>UF:</Text>
-          <Inputs titloInput='Endereço da empresa'
+          <Inputs titloInput='Endereço da empresa' maxLength={2}
           onChangeText={(text)=> setUf(text)}/>  
 
           <Text style={styles.label_input}>Serviços:</Text>

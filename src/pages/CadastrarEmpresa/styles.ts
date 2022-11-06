@@ -9,11 +9,12 @@ export const styles = StyleSheet.create({
     marginBottom: 100,
   },
   imagem:{
-      width: "40%",
-      //minHeight: "5%",  
-      marginBottom: 20,
-      borderRadius: 8,
-  },
+    width: 150,
+    height: 150,
+    marginBottom: 40,
+    borderRadius: 8,
+    backgroundColor: "white",
+},
   label_input:{
     width: '100%',
     textAlign: "left",

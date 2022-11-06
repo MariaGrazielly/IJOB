@@ -80,7 +80,6 @@ export function Cadastro() {
 
       if (cpf === "" && nome === "" && dataNascimento === ""){
 
-        
         Alert.alert ("Complete os campos em branco.");
       }
       else {
@@ -126,14 +125,17 @@ export function Cadastro() {
         <View>
         <View style={styles.container}>
         
-        {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-       
+        {image ?
+        <Image style={styles.imagem} source={{ uri: image }} />
+        :
         <TouchableOpacity  
-            onPress={pickImage} 
-            style={styles.btn_cadastrar}>
-            <Text style={styles.label_btn}>foto</Text>
-            
+        onPress={pickImage} 
+        >
+        <Image style={styles.imagem} source={require('../../assets/imag_test.png')} />
         </TouchableOpacity>
+        }
+       
+
 
         <Text style={styles.label_input}>Nome:</Text>
         <Inputs 
