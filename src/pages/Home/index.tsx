@@ -7,16 +7,19 @@ import { doc,collection, getDocs, getFirestore, query, where, onSnapshot, Docume
 import { styles } from './styles';
 import { initializeApp } from '@firebase/app';
 import { firebaseConfig } from '../../../back-end/firebase-config';
-//https://firebase.google.com/docs/auth/admin/verify-id-tokens?hl=pt-br
+import { getAuth,  onAuthStateChanged } from 'firebase/auth';
+//https://firebase.google.com/docs/auth/web/manage-users?hl=pt-br
 // recuperação de token, olhar dps
 export function Home() {
 
   
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  const auth = getAuth(app);
   const [dados, setDados] = useState<DocumentData[]>([]);
   const [localFiltro, setLocalFiltro] = useState <DocumentData[]>([]);
   const [setarDados,setSetarDados] = useState ('');
+  const [Token,setToken] = useState <Promise<string>>();
   console.log (dados);
 
 
@@ -30,6 +33,16 @@ export function Home() {
 
   ),[])
   
+  
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      
+      const uid = user.uid;
+      // ...
+    } else {
+      console.log ('error')
+    }
+  });
    
 
    const searchFilterFunction=(text: string )=>{
@@ -47,6 +60,7 @@ export function Home() {
    }
 
   return (
+    
     <ScrollView>
       <Header />
 
@@ -57,7 +71,7 @@ export function Home() {
       onChange = {(event) =>{searchFilterFunction(event.nativeEvent.text)}
     }
       />
-
+      
     
     </View>
     

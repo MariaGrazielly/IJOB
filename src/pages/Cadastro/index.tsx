@@ -106,6 +106,7 @@ export function Cadastro() {
           .then((userCredential)=>{
             Alert.alert('conta criada');
             const user = userCredential.user;
+            
             console.log (user);
             setEmail ("")
             setSenha("")
