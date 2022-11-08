@@ -92,6 +92,9 @@ export function CadastrarEmpresa() {
           });
           
             console.log("Document written with ID: ", docRef.id);
+            Alert.alert ("empresa criada com sucesso");
+            
+            navigation.navigate('Home');
           } catch (e) {
             console.error("Error adding document: ", e);
           }
