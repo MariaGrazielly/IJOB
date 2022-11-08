@@ -7,7 +7,8 @@ import { doc,collection, getDocs, getFirestore, query, where, onSnapshot, Docume
 import { styles } from './styles';
 import { initializeApp } from '@firebase/app';
 import { firebaseConfig } from '../../../back-end/firebase-config';
-
+//https://firebase.google.com/docs/auth/admin/verify-id-tokens?hl=pt-br
+// recuperação de token, olhar dps
 export function Home() {
 
   
@@ -17,6 +18,9 @@ export function Home() {
   const [localFiltro, setLocalFiltro] = useState <DocumentData[]>([]);
   const [setarDados,setSetarDados] = useState ('');
   console.log (dados);
+
+
+  
 
   useEffect (
     ()=>

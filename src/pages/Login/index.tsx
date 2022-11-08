@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { View, Image, Text, TouchableOpacity, Alert} from 'react-native';
 import {getAuth,signInWithEmailAndPassword} from 'firebase/auth';
 import {initializeApp} from 'firebase/app';
@@ -7,20 +6,16 @@ import {firebaseConfig} from './../../../back-end/firebase-config';
 import { styles } from './styles';
 import logoImg from '../../../assets/logo.png';
 import { Inputs } from '../../components/Input';
-
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 import { Background } from '../../components/Background';
-//import { interpolateSharableColor } from 'react-native-reanimated';
 
-//import  Icon  from 'react-native-vector-icons/FontAwesome5';
 
 export function Login() {
 
     const navigation = useNavigation<propsStack>();
-    const [email, setEmail] = React.useState("");
-    const [senha, setSenha] = React.useState("");
-   
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     
@@ -31,6 +26,8 @@ export function Login() {
       // userCredential passado em parametro teste
       .then((userCredential)=>{
         const user = userCredential.user;
+        setEmail("")
+        setSenha("")
         navigation.navigate("Home")
       })
       .catch (error =>{
@@ -50,10 +47,12 @@ export function Login() {
         <Image source={logoImg} />
         <Text style={styles.title}>Acesse sua conta</Text>
         <Inputs 
+        value={email}
         titloInput='E-mail'
         onChangeText={(text)=> setEmail(text)}
         />
         <Inputs 
+        value={senha}
         titloInput='Senha'
         onChangeText={(text)=> setSenha(text)}
         secureTextEntry

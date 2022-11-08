@@ -107,6 +107,13 @@ export function Cadastro() {
             Alert.alert('conta criada');
             const user = userCredential.user;
             console.log (user);
+            setEmail ("")
+            setSenha("")
+            setCPF("")
+            setConfirmaSenha("")
+            setDataNascimento("")
+            setImgUrl('')
+            setNome('')
             navigation.navigate('Login');
           })
           .catch(error =>{console.log (error)
@@ -161,12 +168,14 @@ export function Cadastro() {
         
         <Text style={styles.label_input}>E-mail:</Text>
         <Inputs 
+        value={email}
         titloInput='maria@gmail.com'
         onChangeText={(text)=> setEmail(text)}
         />
 
         <Text style={styles.label_input}>Senha:</Text>
         <Inputs 
+        value={senha}
         titloInput='Escolha uma senha'
         onChangeText={(text)=> setSenha(text)}
         secureTextEntry
