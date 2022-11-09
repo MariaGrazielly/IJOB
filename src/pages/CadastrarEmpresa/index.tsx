@@ -87,7 +87,7 @@ export function CadastrarEmpresa() {
                       const uid = user.uid;
 
                       //cadastrando empresa no banco com id do usuario
-                      const docRef = await setDoc(doc(db, 'users',uid), {
+                      const docRef = await setDoc(doc(db, 'createUserCnpj',uid), {
                           nomeEmpresa: nomeEmpresa,
                           cpf_cnpj: cpf_cnpj,
                           whatsapp: whatsapp,
