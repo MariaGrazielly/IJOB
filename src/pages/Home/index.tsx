@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import { View, ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import { CardServico } from '../../components/CardServico';
 import { Header } from '../../components/Header';
-import { doc,collection, getDocs, getFirestore, query, where, onSnapshot, DocumentData } from "firebase/firestore";
+import { collection, getFirestore, onSnapshot, DocumentData } from "firebase/firestore";
 import { styles } from './styles';
 import { initializeApp } from '@firebase/app';
 import { firebaseConfig } from '../../../back-end/firebase-config';
-import { getAuth,  onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 //https://firebase.google.com/docs/auth/web/manage-users?hl=pt-br
 // recuperação de token, olhar dps
+
 export function Home() {
 
   
@@ -19,32 +20,16 @@ export function Home() {
   const [dados, setDados] = useState<DocumentData[]>([]);
   const [localFiltro, setLocalFiltro] = useState <DocumentData[]>([]);
   const [setarDados,setSetarDados] = useState ('');
-  const [Token,setToken] = useState <Promise<string>>();
-  console.log (dados);
-
-
-  
 
   useEffect (
     ()=>
+
     onSnapshot(collection(db,'createUserCnpj'),(snapshot)=>
     setDados(snapshot.docs.map((doc)=> ({...doc.data(), id: doc.id})))
     
-
   ),[])
   
   
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      
-      const uid = user.uid;
-      // ...
-    } else {
-      console.log ('error')
-    }
-  });
-   
-
    const searchFilterFunction=(text: string )=>{
         if(text){
           const newData = dados.filter(dado=>{
@@ -77,18 +62,18 @@ export function Home() {
     
     {setarDados ? (
     localFiltro.map((dado, idex)=>(
-      <CardServico
-      key={idex}
-      name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}
-      cidade={dado.cidade? dado.cidade: "Sem Nome"}
-      estado={dado.uf? dado.uf: "Sem nome"}
-      rua={dado.rua? dado.rua: "Sem nome"}
-      bairro={dado.bairro? dado.bairro: "Sem nome"}
-      cep={dado.cep? dado.cep: "Sem nome"}
-      whatsapp={dado.whatsapp? dado.whatsapp: "Sem nome"}
-      servicos={dado.servicos? dado.servicos: "Sem nome"}
-      imagem={dado.imagemCnpj}
-      />
+        <CardServico
+          key={idex}
+          name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}
+          cidade={dado.cidade? dado.cidade: "Sem Nome"}
+          estado={dado.uf? dado.uf: "Sem nome"}
+          rua={dado.rua? dado.rua: "Sem nome"}
+          bairro={dado.bairro? dado.bairro: "Sem nome"}
+          cep={dado.cep? dado.cep: "Sem nome"}
+          whatsapp={dado.whatsapp? dado.whatsapp: "Sem nome"}
+          servicos={dado.servicos? dado.servicos: "Sem nome"}
+          imagem={dado.imagemCnpj}
+        />
                 
       )))
     :

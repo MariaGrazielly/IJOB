@@ -1,23 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 import { styles } from './styles';
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { doc, DocumentData, getDoc, getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../../back-end/firebase-config';
 
 interface HeaderProps{
-    title?: string;
-    icone_imag?: boolean;
+    
+     title?: string;
+     icone_imag?: boolean;
 }
 
-export function Header({title, icone_imag}: HeaderProps) {
+    
+
+
+export function Header({title,icone_imag}: HeaderProps) {
 
     const navigation = useNavigation<propsStack>();
     const auth = getAuth();
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const [dados, setDados] = useState<DocumentData|[]>([]);
+
+    useEffect(()=>{
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                //recuperar id
+                const uid = user.uid;
+                const docRef = doc(db, "users", uid);
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    //setar dados do usuario
+                    setDados (docSnap.data())
+                    console.log("documento:",dados);
+                  } else {
+                    // não existe dado
+                    console.log("Não existe documento!");
+                  }
+            } else {
+                console.log ('error')
+            }
+        });
+
+    },[])
+    
 
     const exit = ()=> {
         //função de deslogar do banco

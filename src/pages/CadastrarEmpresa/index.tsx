@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from 'firebase/app';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, doc, getFirestore, setDoc } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {ScrollView, View, Image, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Background } from '../../components/Background';
@@ -11,6 +11,7 @@ import { Inputs, InputsMask } from '../../components/Input';
 import { propsStack } from '../../Models';
 import * as ImagePicker from 'expo-image-picker';
 import { styles } from './styles';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export function CadastrarEmpresa() {
 
@@ -26,11 +27,15 @@ export function CadastrarEmpresa() {
   const [servicos,setServicos] = useState("");
   const [image, setImage] = useState (null);
   const [imgUrl, setImgUrl] = useState ("");
+  
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const navigation = useNavigation<propsStack>();
   const storage = getStorage ();
+  const auth = getAuth(app);
+
+  
   
   const pickImage = async () => {
    
@@ -75,29 +80,36 @@ export function CadastrarEmpresa() {
             Alert.alert ("Complete os campos em branco.");
          }
           else{
-          try {
-            const docRef = await addDoc(collection(db, "createUserCnpj"), {
-              nomeEmpresa: nomeEmpresa,
-              cpf_cnpj: cpf_cnpj,
-              whatsapp: whatsapp,
-              celular: celular,
-              cep: cep,
-              rua: rua,
-              bairro: bairro,
-              cidade : cidade,
-              uf : uf,
-              servicos : servicos,
-              imagemCnpj : imgUrl
-              
-          });
-          
-            console.log("Document written with ID: ", docRef.id);
-            Alert.alert ("empresa criada com sucesso");
-            
-            navigation.navigate('Home');
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+              try {
+                onAuthStateChanged(auth, async (user) => {
+                  if (user) {
+                      //recuperar id
+                      const uid = user.uid;
+
+                      //cadastrando empresa no banco com id do usuario
+                      const docRef = await setDoc(doc(db, 'users',uid), {
+                          nomeEmpresa: nomeEmpresa,
+                          cpf_cnpj: cpf_cnpj,
+                          whatsapp: whatsapp,
+                          celular: celular,
+                          cep: cep,
+                          rua: rua,
+                          bairro: bairro,
+                          cidade : cidade,
+                          uf : uf,
+                          servicos : servicos,
+                          imagemCnpj : imgUrl
+                        
+                    });
+                  }
+              });
+
+                Alert.alert ("empresa criada com sucesso");
+                navigation.navigate('Home');
+                
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              }
           }
       }
 

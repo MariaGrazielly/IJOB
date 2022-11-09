@@ -8,8 +8,7 @@ import { styles } from './styles';
 import {useNavigation} from '@react-navigation/native';
 import { propsStack } from '../../Models';
 import { Header } from '../../components/Header';
-import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { Background } from '../../components/Background';
 import * as ImagePicker from 'expo-image-picker';
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -86,40 +85,40 @@ export function Cadastro() {
 
         
         if (confirmaSenha === senha){
-          
-          try {
-            const docRef = await addDoc(collection(db, "users"), {
-              cpf: cpf,
-              dataNascimento: dataNascimento,
-              name: nome,
-             image: imgUrl
-              
-          });
-          
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-      
-        createUserWithEmailAndPassword(auth,email,senha)
+
+          createUserWithEmailAndPassword(auth,email,senha)
         // função de criação de conta
-          .then((userCredential)=>{
+          .then(async (userCredential)=>{
             Alert.alert('conta criada');
             const user = userCredential.user;
+            const uid = user.uid;
+            console.log (user); 
             
-            console.log (user);
-            setEmail ("")
-            setSenha("")
-            setCPF("")
-            setConfirmaSenha("")
-            setDataNascimento("")
-            setImgUrl('')
-            setNome('')
+            try {
+            
+              const docRef = await setDoc(doc(db, 'users',uid), {
+                
+                cpf: cpf,
+                dataNascimento: dataNascimento,
+                name: nome,
+               image: imgUrl
+                
+            });
+            
+               
+            } catch (e) {
+              console.error("Erro: ", e);
+            }
+            
             navigation.navigate('Login');
           })
           .catch(error =>{console.log (error)
             Alert.alert(error.menssage);
           })
+          
+          
+      
+        
       }
       else {Alert.alert("Senhas não são iguais, por favor tente novamente.")}
     }}
