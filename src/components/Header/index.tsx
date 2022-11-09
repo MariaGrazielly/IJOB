@@ -27,7 +27,7 @@ export function Header({title,icone_imag}: HeaderProps) {
     const showSidebar = () => setSidebar(!sidebar);
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const [dados, setDados] = useState<DocumentData|[]>([]);
+    const [dados, setDados] = useState<DocumentData>([]);
 
     useEffect(()=>{
 
