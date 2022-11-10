@@ -32,26 +32,30 @@ export function Header({title,icone_imag}: HeaderProps) {
     useEffect(()=>{
 
         onAuthStateChanged(auth, async (user) => {
+            
             if (user) {
                 //recuperar id
-                const uid = user.uid;
+                const  uid =  user.uid;
                 const docRef = doc(db, "users", uid);
                 const docSnap = await getDoc(docRef);
                 
-                if (docSnap.exists()) {
-                    //setar dados do usuario
-                    setDados (docSnap.data())
-                    console.log("documento:",dados);
-                  } else {
-                    // não existe dado
-                    console.log("Não existe documento!");
-                  }
-            } else {
+             
+                        if (docSnap.exists()) {
+                            //setar dados do usuario
+                            setDados (docSnap.data())
+                         //   console.log("documento:",dados);
+                        } else {
+                            // não existe dado
+                            console.log("Não existe documento!");
+                        }
+                    
+                } else {
                 console.log ('error')
             }
+            
         });
 
-    },[])
+    },[dados])
     
 
     const exit = ()=> {
