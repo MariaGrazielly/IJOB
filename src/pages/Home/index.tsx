@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import { View, ScrollView, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import { CardServico } from '../../components/CardServico';
 import { Header } from '../../components/Header';

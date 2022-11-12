@@ -29,8 +29,8 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const [dados, setDados] = useState<DocumentData>([]);
-
-    useEffect(()=>{
+    
+    useEffect (()=>{
 
         onAuthStateChanged(auth, async (user) => {
             
@@ -39,6 +39,8 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                 const  uid =  user.uid;
                 const docRef = doc(db, "users", uid);
                 const docSnap = await getDoc(docRef);
+                
+                
                 
              
                         if (docSnap.exists()) {
@@ -54,10 +56,39 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                 console.log ('error')
             }
             
+
+
         });
 
     },[setDados])
     
+   // console.log(dados)
+  
+    // const confirmaCnpj = async () => {
+
+    //     onAuthStateChanged(auth, async (user) => {
+            
+    //         if (user) {
+                 
+    //             const  uid =  user.uid;
+    //             const docRef = doc(db, "createUserCnpj", uid);
+    //             const docSnap = await getDoc(docRef);
+                
+                
+                
+             
+    //                     if (docSnap.exists()) {
+        //aq que tem que tar o retorno da tela de edição de empresa
+                           
+    //                     } else {
+                          //aq que tem que tar o retorno da tela de cadastro de empresa  
+    //                     }
+                    
+    //             } else {
+    //             console.log ('error')
+    //         }
+    //     })
+    // }
 
     const exit = ()=> {
         //função de deslogar do banco

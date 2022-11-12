@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from 'firebase/app';
-import { addDoc, collection, doc, getFirestore, setDoc } from 'firebase/firestore';
+import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import {ScrollView, View, Image, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Background } from '../../components/Background';
