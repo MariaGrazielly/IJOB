@@ -9,6 +9,7 @@ import  Icon  from 'react-native-vector-icons/FontAwesome5'
 import { RedefinirSenha } from '../pages/RedefinirSenha';
 import { EditarPerfil } from '../pages/EditarPerfil';
 import { CadastrarEmpresa } from '../pages/CadastrarEmpresa';
+import { EditarEmpresa } from '../pages/EditarEmpresa';
 
 const {Navigator, Screen} = createNativeStackNavigator<propsNavigationStack>();
 
@@ -39,6 +40,8 @@ export function TORoutes(){
                 <Screen name="Editarperfil" component={EditarPerfil} />
 
                 <Screen name="CadastrarEmpresa" component={CadastrarEmpresa} />
+
+                <Screen name="EditarEmpresa" component={EditarEmpresa} />
         </Navigator>
     )
 }

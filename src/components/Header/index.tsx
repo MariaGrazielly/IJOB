@@ -14,12 +14,13 @@ interface HeaderProps{
     
      title?: string;
      icone_imag?: boolean;
+     empresa?: string;
 }
 
     
 
 
-export function Header({title,icone_imag}: HeaderProps) {
+export function Header({title,icone_imag, empresa}: HeaderProps) {
 
     const navigation = useNavigation<propsStack>();
     const auth = getAuth();
@@ -43,7 +44,7 @@ export function Header({title,icone_imag}: HeaderProps) {
                         if (docSnap.exists()) {
                             //setar dados do usuario
                             setDados (docSnap.data())
-                         //   console.log("documento:",dados);
+                           // console.log("documento:",dados);
                         } else {
                             // não existe dado
                             console.log("Não existe documento!");
@@ -55,7 +56,7 @@ export function Header({title,icone_imag}: HeaderProps) {
             
         });
 
-    },[dados])
+    },[setDados])
     
 
     const exit = ()=> {
@@ -98,8 +99,8 @@ export function Header({title,icone_imag}: HeaderProps) {
                             </View>
 
                             <View style={styles.imagem}>
-                                <Image style={styles.imag_menu} source={require('../../assets/imag_test.png')} />
-                                <Text style={styles.img_texto}></Text> 
+                                <Image style={styles.imag_menu} source={{uri: `${dados.image}`}} />
+                                <Text style={styles.img_texto}>{dados.name}</Text> 
                             </View>
                             
                             <View style={styles.linha_menu}></View>
@@ -108,15 +109,32 @@ export function Header({title,icone_imag}: HeaderProps) {
                                 <TouchableOpacity onPress={()=> {
                                     navigation.navigate("Editarperfil")
                                     showSidebar()}}>
-                                    <Text style={styles.label_navigator}>
+                                <Text style={styles.label_navigator}>
                                        <Icon2 style={styles.label_navigator} name='edit'/> Editar Perfil</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={()=>{ 
-                                    navigation.navigate("CadastrarEmpresa")
-                                    showSidebar()}}>
-                                    <Text style={styles.label_navigator}>
-                                       <Icon2 style={styles.label_navigator} name='id-card-o' /> Cadastrar Empresa</Text>
-                                </TouchableOpacity>
+
+                                    {
+                                        (dados.id == empresa)?
+                                        <>
+                                            <TouchableOpacity onPress={()=>{
+                                                navigation.navigate("EditarEmpresa")
+                                                showSidebar()
+                                            }}>
+                                                <Text style={styles.label_navigator}>
+                                                <Icon2 style={styles.label_navigator} name='edit'/> Editar Empresa</Text>
+                                             </TouchableOpacity>
+                                        </>
+                                        :
+                                        <>
+                                            <TouchableOpacity onPress={()=>{ 
+                                            navigation.navigate("CadastrarEmpresa")
+                                            showSidebar()}}>
+                                                <Text style={styles.label_navigator}>
+                                                <Icon2 style={styles.label_navigator} name='id-card-o' /> Cadastrar Empresa</Text>
+                                            </TouchableOpacity>
+                                        </>
+                                    }
+
 
                             </View>
                             

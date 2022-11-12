@@ -48,8 +48,17 @@ export function Home() {
   return (
     
     <ScrollView>
-      <Header />
-
+      <>
+      {
+        dados?
+        dados.map((item)=>{
+          <Header empresa={item.id}/>
+        })
+        :
+          <Header />
+      }
+          <Header />
+     </>
     <View style={styles.buttonPesquisar}>
       <TextInput 
       style={styles.inputPesquisar}
@@ -58,7 +67,9 @@ export function Home() {
     }
       />
       
-    
+     <View style={styles.buttonIconPesquisar}>
+     <Icon style={styles.iconPesquisar} name="magnifier" />
+     </View>
     </View>
     
     {setarDados ? (
