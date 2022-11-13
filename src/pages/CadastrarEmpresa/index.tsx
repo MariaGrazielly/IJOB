@@ -184,7 +184,7 @@ export function CadastrarEmpresa() {
         <Text style={styles.label_btn}>Cancelar</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity
         onPress={handleCreateAccont} 
         style={styles.btn_cadastrar}>
         <Text style={styles.label_btn}>Cadastrar</Text>

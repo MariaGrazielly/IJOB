@@ -130,7 +130,12 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                             </View>
 
                             <View style={styles.imagem}>
-                                <Image style={styles.imag_menu} source={{uri: `${dados.image}`}} />
+                                {
+                               (dados.image == "")?
+                                    <Image style={styles.imag_menu} source={require('../../assets/imag_test.png')} />
+                                :
+                                    <Image style={styles.imag_menu} source={{uri: `${dados.image}`}} />
+                                }
                                 <Text style={styles.img_texto}>{dados.name}</Text> 
                             </View>
                             
@@ -145,7 +150,7 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                                 </TouchableOpacity>
 
                                     {
-                                        (dados.id == empresa)?
+                                        (dados.id != empresa)?
                                         <>
                                             <TouchableOpacity onPress={()=>{
                                                 navigation.navigate("EditarEmpresa")
