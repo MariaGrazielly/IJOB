@@ -103,8 +103,21 @@ export function EditarEmpresa() {
               
             });
 
-            Alert.alert ("Empresa editada com sucesso!");
-            navigation.navigate('Home');
+            Alert.alert (
+              "Editar Empresa",
+              "Tem certeza que deseja editar empresa?", [
+                {
+                  text: 'Cancelar',
+                  style: 'cancel'
+                },
+                {
+                  text: 'Editar',
+                  onPress: () => Alert.alert("Empresa editada com sucesso"),
+                }
+              ],
+              {cancelable: false}            
+            );
+            
 
             }catch(e){
               console.error("Error adding document: ", e);
@@ -130,7 +143,7 @@ export function EditarEmpresa() {
       <Header title='Editar Empresa' icone_imag />
      
         <View style={styles.container}>
-          <View>
+        
           {
           image ? <Image style={styles.imagem} source={{ uri: image }} />
           :
@@ -139,35 +152,42 @@ export function EditarEmpresa() {
           <Image style={styles.imagem} source={require('../../assets/imag_test.png')} />
           </TouchableOpacity>
           }
-          </View>
           
-          <View>
+          
+          <View style={styles.container_dados}>
             <Text style={styles.label_input}>Whatsapp:</Text>
             <InputsMask titloInputMask='informe seu Whatsapp' type='cel-phone'
+            value={whatsapp}
             onChangeText={(text)=> setWhatsapp(text)}/>
 
             <Text style={styles.label_input}>Celular:</Text>
             <InputsMask titloInputMask='informe seu celular' type='cel-phone'
+            value={celular}
             onChangeText={(text)=> setCelular(text)}/>
 
             <Text style={styles.label_input}>CEP:</Text>
             <Inputs titloInput='Cep da empresa' 
+            value={cep}
             onChangeText={(text)=> setCep(text)}/>  
 
             <Text style={styles.label_input}>Rua:</Text>
             <Inputs titloInput='Endereço da empresa'
+            value={rua}
             onChangeText={(text)=> setRua(text)}/>  
 
             <Text style={styles.label_input}>Bairro:</Text>
             <Inputs titloInput='Endereço da empresa'
+            value={bairro}
             onChangeText={(text)=> setBairro(text)} />  
 
             <Text style={styles.label_input}>Cidade:</Text>
             <Inputs titloInput='Endereço da empresa'
+            value={cidade}
             onChangeText={(text)=> setCidade(text)} />  
 
             <Text style={styles.label_input}>UF:</Text>
             <Inputs titloInput='Endereço da empresa' maxLength={2}
+            value={uf}
             onChangeText={(text)=> setUf(text)} />  
 
             <Text style={styles.label_input}>Serviços:</Text>
@@ -176,20 +196,22 @@ export function EditarEmpresa() {
             placeholder="Liste seus serviços"
             multiline={true}
             numberOfLines={10}   
+            value={servicos}
             onChangeText={(text)=> setServicos(text)}       
             />  
 
           <View style={styles.btn}>
-            <TouchableOpacity
-            onPress={updateCollectionCnpj} 
-            style={styles.btn_salvar}>
-            <Text style={styles.label_btn}>Salvar</Text>
-            </TouchableOpacity>
 
             <TouchableOpacity  
             onPress={()=> navigation.goBack()}
             style={styles.btn_cancelar}>
             <Text style={styles.label_btn}>Cancelar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+            onPress={updateCollectionCnpj} 
+            style={styles.btn_salvar}>
+            <Text style={styles.label_btn}>Salvar</Text>
             </TouchableOpacity>
           </View>
 

@@ -9,19 +9,22 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 30,
   },
-  imagem:{
+   imagem:{
     width: 150,
     height: 150,
     marginBottom: 40,
     borderRadius: 8,
     backgroundColor: "white",
 },
+  container_dados:{
+    width: "100%"
+},
   label_input:{
-    width: '100%',
+    width: "100%",
     textAlign: "left",
     fontSize: 17,
     marginBottom: 5,
-  },
+   },
   input_servicos:{
     backgroundColor: "white",
     justifyContent: "flex-start",
@@ -36,7 +39,7 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     placeholderTextColor: "black",
     textAlignVertical: "top"
-  }, 
+   }, 
   btn:{
     width: '100%',
     flexDirection: "row",
