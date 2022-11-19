@@ -150,7 +150,7 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                                 </TouchableOpacity>
 
                                     {
-                                        (dados.id != empresa)?
+                                        (!empresa)?
                                         <>
                                             <TouchableOpacity onPress={()=>{
                                                 navigation.navigate("EditarEmpresa")

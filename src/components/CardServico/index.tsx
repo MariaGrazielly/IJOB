@@ -14,9 +14,10 @@ interface PropsInfoEmpresa{
     whatsapp: string;
     servicos: string;
     imagem: string;
+    cpf_cnpj?: string;
 }
 
-export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, whatsapp, servicos, imagem}: PropsInfoEmpresa) {
+export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, whatsapp, servicos, imagem, cpf_cnpj}: PropsInfoEmpresa) {
 
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
@@ -55,6 +56,11 @@ export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, wha
               </View>
 
               <View style={styles.infoModal}>
+                <Text style={styles.dados}>CPF/CNPJ:</Text>
+                <Text style={styles.dadosInfo}>{cpf_cnpj}</Text>
+              </View>
+
+              <View style={styles.infoModal}>
                 <Text style={styles.dados}>Endereço:</Text>
                 <Text style={styles.dadosInfo}>
                   Rua: {rua}
@@ -89,6 +95,12 @@ export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, wha
               onPress={showSidebar}
               >
                 <Text>Fechar</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+              onPress={showSidebar}
+              >
+                <Text>Verificada</Text>
               </TouchableOpacity>
               </View>
             </View>

@@ -27,7 +27,7 @@ export function CadastrarEmpresa() {
   const [servicos,setServicos] = useState("");
   const [image, setImage] = useState (null);
   const [imgUrl, setImgUrl] = useState ("");
-  
+  const [verificado, setVerificado] = useState <boolean> (false);
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
@@ -98,7 +98,8 @@ export function CadastrarEmpresa() {
                           cidade : cidade,
                           uf : uf,
                           servicos : servicos,
-                          imagemCnpj : imgUrl
+                          imagemCnpj : imgUrl,
+                          verificado: verificado
                         
                     });
                   }

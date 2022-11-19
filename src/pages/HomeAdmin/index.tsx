@@ -11,7 +11,7 @@ import { getAuth } from 'firebase/auth';
 //https://firebase.google.com/docs/auth/web/manage-users?hl=pt-br
 // recuperação de token, olhar dps
 
-export function Home() {
+export function HomeAdmin() {
 
   
   const app = initializeApp(firebaseConfig);
@@ -52,7 +52,7 @@ export function Home() {
       {
         dados?
         dados.map((item)=>{
-          <Header empresa={item.id}/>
+          <Header empresa={item.verificado}/>
         })
         :
           <Header />
@@ -75,10 +75,11 @@ export function Home() {
     
     {setarDados ? (
     localFiltro.map((dado, idex)=>(
-      (dado.verificado == true)?
+      (dado.verificado == false)?
         <CardServico
           key={idex}
           name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}
+          cpf_cnpj={dado.cpf_cnpj? dado.cpf_cnpj: "Sem Nome"}
           cidade={dado.cidade? dado.cidade: "Sem Nome"}
           estado={dado.uf? dado.uf: "Sem nome"}
           rua={dado.rua? dado.rua: "Sem nome"}
@@ -93,10 +94,11 @@ export function Home() {
       )))
     :
     dados.map((dado, idex)=>(
-      (dado.verificado == true)?
+      (dado.verificado == false)?
       <CardServico
       key={idex}
       name_empresa={dado.nomeEmpresa? dado.nomeEmpresa: "Sem Nome"}
+      cpf_cnpj={dado.cpf_cnpj? dado.cpf_cnpj: "Sem Nome"}
       cidade={dado.cidade? dado.cidade: "Sem Nome"}
       estado={dado.uf? dado.uf: "Sem nome"}
       rua={dado.rua? dado.rua: "Sem nome"}
