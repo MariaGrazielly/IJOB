@@ -33,5 +33,24 @@ info_label:{
 },
 info_conteudo:{
   fontSize: 20,
+},
+btn_salvar:{
+  width: '40%',
+  height: 50, 
+  borderRadius: 4,
+  backgroundColor: '#007EF3',    
+  justifyContent: 'center',
+},
+label_btn:{
+  textAlign: 'center',
+  color:'#fff',
+  fontSize: 20,
+},
+btn_cancelar:{
+  width: '40%',
+  height: 50, 
+  borderRadius: 4,
+  backgroundColor: '#D01111',    
+  justifyContent: 'center',
 }
 });

@@ -10,6 +10,10 @@ import { doc, DocumentData, getDoc, getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 
+
+
+
+
 interface HeaderProps{
     
      title?: string;
@@ -28,67 +32,56 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
     const showSidebar = () => setSidebar(!sidebar);
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    
     const [dados, setDados] = useState<DocumentData>([]);
+    const [trocaTela,setTrocatela] = useState <boolean> (false);
     
     useEffect (()=>{
 
+
         onAuthStateChanged(auth, async (user) => {
-            
+ 
             if (user) {
                 //recuperar id
                 const  uid =  user.uid;
                 const docRef = doc(db, "users", uid);
                 const docSnap = await getDoc(docRef);
+               
                 
-                
-                
-             
                         if (docSnap.exists()) {
                             //setar dados do usuario
                             setDados (docSnap.data())
+                            
                            // console.log("documento:",dados);
                         } else {
                             // não existe dado
                             console.log("Não existe documento!");
                         }
+
+                        //troca de tela
+             const docEmpresa= doc(db, "createUserCnpj",uid);
+             const docTroca = await getDoc(docEmpresa);
+
+                        if (docTroca.exists()){
+                            setTrocatela(true);
+                        }
+                        else{
+                            setTrocatela(false);
+                        }
                     
                 } else {
                 console.log ('error')
             }
-            
 
+             
 
         });
 
+       
+
     },[setDados])
     
-   // console.log(dados)
-  
-    // const confirmaCnpj = async () => {
-
-    //     onAuthStateChanged(auth, async (user) => {
-            
-    //         if (user) {
-                 
-    //             const  uid =  user.uid;
-    //             const docRef = doc(db, "createUserCnpj", uid);
-    //             const docSnap = await getDoc(docRef);
-                
-                
-                
-             
-    //                     if (docSnap.exists()) {
-        //aq que tem que tar o retorno da tela de edição de empresa
-                           
-    //                     } else {
-                          //aq que tem que tar o retorno da tela de cadastro de empresa  
-    //                     }
-                    
-    //             } else {
-    //             console.log ('error')
-    //         }
-    //     })
-    // }
+   
 
     const exit = ()=> {
         //função de deslogar do banco
@@ -100,6 +93,8 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
       });
       
     }
+
+    
 
   return (
     <View style={styles.header}>
@@ -150,7 +145,7 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                                 </TouchableOpacity>
 
                                     {
-                                        (!empresa)?
+                                        (trocaTela== true)?
                                         <>
                                             <TouchableOpacity onPress={()=>{
                                                 navigation.navigate("EditarEmpresa")
@@ -190,3 +185,5 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
     </View>
   );
 }
+
+

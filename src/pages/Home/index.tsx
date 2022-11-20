@@ -28,6 +28,7 @@ export function Home() {
     setDados(snapshot.docs.map((doc)=> ({...doc.data(), id: doc.id})))
     
   ),[])
+  
   console.log (dados);
   
   
