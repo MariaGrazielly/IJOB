@@ -76,7 +76,7 @@ export function Login() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.linha} >
+      {/* <View style={styles.linha} >
         <View style={styles.linha_1}></View>
         <Text>OU</Text>
         <View style={styles.linha_2}></View>
@@ -90,7 +90,7 @@ export function Login() {
         <Image style={styles.img_google} source={require('../../assets/google.png')}/>
         <Text style={styles.texto_google}>Google</Text>
       </TouchableOpacity>
-      </View>
+      </View> */}
 
     </View>
     </Background>

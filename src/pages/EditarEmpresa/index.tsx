@@ -123,20 +123,7 @@ export function EditarEmpresa() {
             const  uid =  user.uid;
             const docRef = doc(db, "createUserCnpj", uid);
 
-            try{
-                await updateDoc(docRef, {
-                'whatsapp': whatsapp,
-                "celular": celular,
-                "cep": cep,
-                "rua": rua,
-                "bairro": bairro,
-                "cidade" : cidade,
-                "uf" : uf,
-                "servicos" : servicos,
-               "imagemCnpj" : imgUrl
-              
-            });
-
+             
             Alert.alert (
               "Editar Empresa",
               "Tem certeza que deseja editar empresa?", [
@@ -151,6 +138,20 @@ export function EditarEmpresa() {
               ],
               {cancelable: false}            
             );
+
+            try{
+                await updateDoc(docRef, {
+                'whatsapp': whatsapp,
+                "celular": celular,
+                "cep": cep,
+                "rua": rua,
+                "bairro": bairro,
+                "cidade" : cidade,
+                "uf" : uf,
+                "servicos" : servicos,
+               "imagemCnpj" : imgUrl
+              
+            });
             
 
             }catch(e){
