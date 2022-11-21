@@ -36,6 +36,7 @@ export function Login() {
           Alert.alert ('Por favor, informe seu email e senha.') 
           : 
           Alert.alert ('Usuario e/ou senha incorreta')
+          setSenha("")
         }
       })
     }

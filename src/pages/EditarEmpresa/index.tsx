@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { doc, getFirestore, updateDoc } from 'firebase/firestore';
-import React, { useState } from 'react';
+import { doc, DocumentData, getDoc, getFirestore, updateDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { firebaseConfig } from '../../../back-end/firebase-config';
 import { Background } from '../../components/Background';
@@ -34,6 +34,40 @@ export function EditarEmpresa() {
   const [servicos,setServicos] = useState("");
   const [image, setImage] = useState (null);
   const [imgUrl, setImgUrl] = useState ("");
+  const [dados,setDados]= useState<DocumentData> ([]);
+  
+
+  useEffect (()=>{
+
+    onAuthStateChanged(auth, async (user) => {
+
+        if (user) {
+            
+            const  uid =  user.uid;
+            const docRef = doc(db, "createUserCnpj", uid);
+            const docSnap = await getDoc(docRef);
+            
+            
+            
+                    if (docSnap.exists()) {
+                        //setar dados do usuario
+                        setDados (docSnap.data())
+                        
+                       
+                    } else {
+                        // não existe dado
+                        console.log("Não existe documento!");
+                    }
+                
+            } else {
+            console.log ('error')
+        }
+
+    });
+
+   
+
+},[setDados])
 
 
   const pickImage = async () => {
@@ -149,7 +183,7 @@ export function EditarEmpresa() {
           :
           <TouchableOpacity  
           onPress={pickImage}>
-          <Image style={styles.imagem} source={require('../../assets/imag_test.png')} />
+          <Image style={styles.imagem} source={{ uri: dados.imagemCnpj }} />
           </TouchableOpacity>
           }
           
@@ -157,37 +191,38 @@ export function EditarEmpresa() {
           <View style={styles.container_dados}>
             <Text style={styles.label_input}>Whatsapp:</Text>
             <InputsMask titloInputMask='informe seu Whatsapp' type='cel-phone'
-            value={whatsapp}
+            value={dados.whatsapp}
             onChangeText={(text)=> setWhatsapp(text)}/>
 
             <Text style={styles.label_input}>Celular:</Text>
             <InputsMask titloInputMask='informe seu celular' type='cel-phone'
-            value={celular}
+            value={dados.celular}
             onChangeText={(text)=> setCelular(text)}/>
 
             <Text style={styles.label_input}>CEP:</Text>
-            <Inputs titloInput='Cep da empresa' 
-            value={cep}
+            <InputsMask titloInputMask='Cep da empresa' 
+            type='zip-code'
+            value={dados.cep}
             onChangeText={(text)=> setCep(text)}/>  
 
             <Text style={styles.label_input}>Rua:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={rua}
+            value={dados.rua}
             onChangeText={(text)=> setRua(text)}/>  
 
             <Text style={styles.label_input}>Bairro:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={bairro}
+            value={dados.bairro}
             onChangeText={(text)=> setBairro(text)} />  
 
             <Text style={styles.label_input}>Cidade:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={cidade}
+            value={dados.cidade}
             onChangeText={(text)=> setCidade(text)} />  
 
             <Text style={styles.label_input}>UF:</Text>
             <Inputs titloInput='Endereço da empresa' maxLength={2}
-            value={uf}
+            value={dados.uf}
             onChangeText={(text)=> setUf(text)} />  
 
             <Text style={styles.label_input}>Serviços:</Text>
@@ -196,7 +231,7 @@ export function EditarEmpresa() {
             placeholder="Liste seus serviços"
             multiline={true}
             numberOfLines={10}   
-            value={servicos}
+            value={dados.servicos}
             onChangeText={(text)=> setServicos(text)}       
             />  
 
