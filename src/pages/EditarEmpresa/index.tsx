@@ -52,7 +52,15 @@ export function EditarEmpresa() {
                     if (docSnap.exists()) {
                         //setar dados do usuario
                         setDados (docSnap.data())
-                        
+                        setBairro (dados.bairro);
+                        setRua(dados.rua);
+                        setCelular(dados.celular);
+                        setServicos(dados.servicos);
+                        setCidade(dados.cidade);
+                        setUf(dados.uf);
+                        setWhatsapp(dados.whatsapp);
+                        setCep(dados.cep);
+
                        
                     } else {
                         // não existe dado
@@ -192,38 +200,38 @@ export function EditarEmpresa() {
           <View style={styles.container_dados}>
             <Text style={styles.label_input}>Whatsapp:</Text>
             <InputsMask titloInputMask='informe seu Whatsapp' type='cel-phone'
-            value={dados.whatsapp}
+            value={whatsapp}
             onChangeText={(text)=> setWhatsapp(text)}/>
 
             <Text style={styles.label_input}>Celular:</Text>
             <InputsMask titloInputMask='informe seu celular' type='cel-phone'
-            value={dados.celular}
+            value={celular}
             onChangeText={(text)=> setCelular(text)}/>
 
             <Text style={styles.label_input}>CEP:</Text>
             <InputsMask titloInputMask='Cep da empresa' 
             type='zip-code'
-            value={dados.cep}
+            value={cep}
             onChangeText={(text)=> setCep(text)}/>  
 
             <Text style={styles.label_input}>Rua:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={dados.rua}
+            value={rua}
             onChangeText={(text)=> setRua(text)}/>  
 
             <Text style={styles.label_input}>Bairro:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={dados.bairro}
+            value={bairro}
             onChangeText={(text)=> setBairro(text)} />  
 
             <Text style={styles.label_input}>Cidade:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={dados.cidade}
+            value={cidade}
             onChangeText={(text)=> setCidade(text)} />  
 
             <Text style={styles.label_input}>UF:</Text>
             <Inputs titloInput='Endereço da empresa' maxLength={2}
-            value={dados.uf}
+            value={uf}
             onChangeText={(text)=> setUf(text)} />  
 
             <Text style={styles.label_input}>Serviços:</Text>
@@ -232,7 +240,7 @@ export function EditarEmpresa() {
             placeholder="Liste seus serviços"
             multiline={true}
             numberOfLines={10}   
-            value={dados.servicos}
+            value={servicos}
             onChangeText={(text)=> setServicos(text)}       
             />  
 
