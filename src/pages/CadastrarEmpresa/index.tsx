@@ -75,6 +75,8 @@ export function CadastrarEmpresa() {
     }
   };
 
+  
+
   const handleCreateAccont = async () =>{
           if (nomeEmpresa==="" && cpf_cnpj==="" && whatsapp==="" && celular==="" && cep==="" && rua==="" && bairro==="" && cidade ==="" && uf ==="" && servicos==="") {
             Alert.alert ("Complete os campos em branco.");
