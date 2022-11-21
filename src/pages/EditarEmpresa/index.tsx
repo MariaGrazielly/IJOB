@@ -129,6 +129,22 @@ export function EditarEmpresa() {
       
   const updateCollectionCnpj =async () => {
 
+        
+    Alert.alert (
+      "Editar Empresa",
+      "Tem certeza que deseja editar empresa?", [
+        {
+          text: 'Cancelar',
+          style: 'cancel'
+        },
+        {
+          text: 'Editar',
+          onPress: () => Alert.alert("Empresa editada com sucesso"),
+        }
+      ],
+      {cancelable: false}            
+    );
+
     
       onAuthStateChanged(auth, async (user) => {
               
@@ -136,22 +152,7 @@ export function EditarEmpresa() {
             const  uid =  user.uid;
             const docRef = doc(db, "createUserCnpj", uid);
 
-             
-            Alert.alert (
-              "Editar Empresa",
-              "Tem certeza que deseja editar empresa?", [
-                {
-                  text: 'Cancelar',
-                  style: 'cancel'
-                },
-                {
-                  text: 'Editar',
-                  onPress: () => Alert.alert("Empresa editada com sucesso"),
-                }
-              ],
-              {cancelable: false}            
-            );
-
+         
             try{
                 await updateDoc(docRef, {
                 'whatsapp': whatsapp,
