@@ -60,7 +60,8 @@ export function EditarEmpresa() {
                         setUf(dados.uf);
                         setWhatsapp(dados.whatsapp);
                         setCep(dados.cep);
-
+                        
+                       
                        
                     } else {
                         // não existe dado
@@ -75,7 +76,11 @@ export function EditarEmpresa() {
 
    
 
-},[setDados])
+},[dados,setBairro,setRua,setCelular,setServicos,setCidade,setUf,setWhatsapp,setCep])
+
+      
+
+
 
 
   const pickImage = async () => {
