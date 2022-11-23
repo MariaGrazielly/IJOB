@@ -52,14 +52,14 @@ export function EditarEmpresa() {
                     if (docSnap.exists()) {
                         //setar dados do usuario
                         setDados (docSnap.data())
-                        setBairro (dados.bairro);
-                        setRua(dados.rua);
-                        setCelular(dados.celular);
-                        setServicos(dados.servicos);
-                        setCidade(dados.cidade);
-                        setUf(dados.uf);
-                        setWhatsapp(dados.whatsapp);
-                        setCep(dados.cep);
+                        // setBairro (dados.bairro);
+                        // setRua(dados.rua);
+                        // setCelular(dados.celular);
+                        // setServicos(dados.servicos);
+                        // setCidade(dados.cidade);
+                        // setUf(dados.uf);
+                        // setWhatsapp(dados.whatsapp);
+                        // setCep(dados.cep);
                         
                        
                        
@@ -74,9 +74,9 @@ export function EditarEmpresa() {
 
     });
 
-   
+   // ,setBairro,setRua,setCelular,setServicos,setCidade,setUf,setWhatsapp,setCep
 
-},[dados,setBairro,setRua,setCelular,setServicos,setCidade,setUf,setWhatsapp,setCep])
+},[dados])
 
       
 
@@ -130,20 +130,20 @@ export function EditarEmpresa() {
   const updateCollectionCnpj =async () => {
 
         
-    Alert.alert (
-      "Editar Empresa",
-      "Tem certeza que deseja editar empresa?", [
-        {
-          text: 'Cancelar',
-          style: 'cancel'
-        },
-        {
-          text: 'Editar',
-          onPress: () => Alert.alert("Empresa editada com sucesso"),
-        }
-      ],
-      {cancelable: false}            
-    );
+    // Alert.alert (
+    //   "Editar Empresa",
+    //   "Tem certeza que deseja editar empresa?", [
+    //     {
+    //       text: 'Cancelar',
+    //       style: 'cancel'
+    //     },
+    //     {
+    //       text: 'Editar',
+    //       onPress: () => Alert.alert("Empresa editada com sucesso"),
+    //     }
+    //   ],
+    //   {cancelable: false}            
+    // );
 
     
       onAuthStateChanged(auth, async (user) => {
@@ -166,7 +166,8 @@ export function EditarEmpresa() {
                "imagemCnpj" : imgUrl
               
             });
-            
+            Alert.alert ("edição feita com sucesso");
+            navigation.navigate("Home");
 
             }catch(e){
               console.error("Error adding document: ", e);
@@ -204,40 +205,40 @@ export function EditarEmpresa() {
           
           
           <View style={styles.container_dados}>
+
             <Text style={styles.label_input}>Whatsapp:</Text>
-            <InputsMask titloInputMask='informe seu Whatsapp' type='cel-phone'
-            value={whatsapp}
+            <InputsMask titloInputMask='informe seu Whatsapp' 
+            type='cel-phone'
             onChangeText={(text)=> setWhatsapp(text)}/>
 
             <Text style={styles.label_input}>Celular:</Text>
-            <InputsMask titloInputMask='informe seu celular' type='cel-phone'
-            value={celular}
+            <InputsMask titloInputMask='informe seu celular'
+             type='cel-phone'
             onChangeText={(text)=> setCelular(text)}/>
 
             <Text style={styles.label_input}>CEP:</Text>
             <InputsMask titloInputMask='Cep da empresa' 
             type='zip-code'
-            value={cep}
             onChangeText={(text)=> setCep(text)}/>  
 
             <Text style={styles.label_input}>Rua:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={rua}
+            
             onChangeText={(text)=> setRua(text)}/>  
 
             <Text style={styles.label_input}>Bairro:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={bairro}
+           
             onChangeText={(text)=> setBairro(text)} />  
 
             <Text style={styles.label_input}>Cidade:</Text>
             <Inputs titloInput='Endereço da empresa'
-            value={cidade}
+            
             onChangeText={(text)=> setCidade(text)} />  
 
             <Text style={styles.label_input}>UF:</Text>
             <Inputs titloInput='Endereço da empresa' maxLength={2}
-            value={uf}
+            
             onChangeText={(text)=> setUf(text)} />  
 
             <Text style={styles.label_input}>Serviços:</Text>
@@ -246,7 +247,7 @@ export function EditarEmpresa() {
             placeholder="Liste seus serviços"
             multiline={true}
             numberOfLines={10}   
-            value={servicos}
+            
             onChangeText={(text)=> setServicos(text)}       
             />  
 

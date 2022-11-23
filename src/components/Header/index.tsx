@@ -35,6 +35,7 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
     
     const [dados, setDados] = useState<DocumentData>([]);
     const [trocaTela,setTrocatela] = useState <boolean> (false);
+    const [trocaTelaAdm,setTrocaTelaAdm] = useState <boolean> (false);
     
     useEffect (()=>{
 
@@ -51,6 +52,7 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                         if (docSnap.exists()) {
                             //setar dados do usuario
                             setDados (docSnap.data())
+                            setTrocaTelaAdm(dados.adm);
                             
                            // console.log("documento:",dados);
                         } else {
@@ -79,7 +81,7 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
 
        
 
-    },[setDados])
+    },[setDados,setTrocaTelaAdm])
     
    
 
@@ -143,13 +145,20 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                                 <Text style={styles.label_navigator}>
                                        <Icon2 style={styles.label_navigator} name='edit'/> Editar Perfil</Text>
                                 </TouchableOpacity>
-
-                                <TouchableOpacity onPress={()=> {
-                                    navigation.navigate("HomeAdmin")
-                                    showSidebar()}}>
-                                <Text style={styles.label_navigator}>
-                                       <Icon2 style={styles.label_navigator} name='edit'/> HomeAdmin</Text>
-                                </TouchableOpacity>
+                                    {
+                                        (trocaTelaAdm == true)?
+                                        <>
+                                        <TouchableOpacity onPress={()=> {
+                                            navigation.navigate("HomeAdmin")
+                                            showSidebar()}}>
+                                        <Text style={styles.label_navigator}>
+                                               <Icon2 style={styles.label_navigator} name='edit'/> HomeAdmin</Text>
+                                        </TouchableOpacity>
+                                        </>
+                                        :
+                                            <></>
+                                    }
+                                
 
                                     {
                                         (trocaTela== true)?
