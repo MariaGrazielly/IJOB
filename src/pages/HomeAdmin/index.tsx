@@ -25,6 +25,7 @@ export function HomeAdmin() {
     onSnapshot(collection(db,'createUserCnpj'),(snapshot)=>
     setDados(snapshot.docs.map((doc)=> ({...doc.data(), id: doc.id})))
     
+    
   ),[])
   
   console.log (dados);
