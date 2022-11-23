@@ -144,6 +144,13 @@ export function Header({title,icone_imag, empresa}: HeaderProps) {
                                        <Icon2 style={styles.label_navigator} name='edit'/> Editar Perfil</Text>
                                 </TouchableOpacity>
 
+                                <TouchableOpacity onPress={()=> {
+                                    navigation.navigate("HomeAdmin")
+                                    showSidebar()}}>
+                                <Text style={styles.label_navigator}>
+                                       <Icon2 style={styles.label_navigator} name='edit'/> HomeAdmin</Text>
+                                </TouchableOpacity>
+
                                     {
                                         (trocaTela== true)?
                                         <>

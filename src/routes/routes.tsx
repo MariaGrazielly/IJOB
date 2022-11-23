@@ -10,6 +10,7 @@ import { RedefinirSenha } from '../pages/RedefinirSenha';
 import { EditarPerfil } from '../pages/EditarPerfil';
 import { CadastrarEmpresa } from '../pages/CadastrarEmpresa';
 import { EditarEmpresa } from '../pages/EditarEmpresa';
+import { HomeAdmin } from '../pages/HomeAdmin';
 
 const {Navigator, Screen} = createNativeStackNavigator<propsNavigationStack>();
 
@@ -42,6 +43,8 @@ export function TORoutes(){
                 <Screen name="CadastrarEmpresa" component={CadastrarEmpresa} />
 
                 <Screen name="EditarEmpresa" component={EditarEmpresa} />
+
+                <Screen name="HomeAdmin" component={HomeAdmin} />
         </Navigator>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { TouchableOpacity, View, Image, Text, Modal, Linking } from 'react-native';
 
 
@@ -15,9 +15,10 @@ interface PropsInfoEmpresa{
     servicos: string;
     imagem: string;
     cpf_cnpj?: string;
+    children?: boolean;
 }
 
-export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, whatsapp, servicos, imagem, cpf_cnpj}: PropsInfoEmpresa) {
+export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, whatsapp, servicos, imagem, cpf_cnpj, children}: PropsInfoEmpresa) {
 
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
@@ -90,21 +91,26 @@ export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, wha
                 <Text style={styles.dadosInfo}>{servicos}</Text>
               </View>
 
-              <View style={styles.fecharModal}>
-              <TouchableOpacity
+              <View style={styles.btn_modal}>
+              <TouchableOpacity style={styles.fecharModal}
               onPress={showSidebar}
               >
                 <Text>Fechar</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-              onPress={showSidebar}
-              >
-                <Text>Verificada</Text>
+              {
+              children?
+              <TouchableOpacity style={styles.verificarModal}>
+                <Text style={styles.textoVerificado}>Verificada</Text>
               </TouchableOpacity>
+              :
+              <></>
+              }
+              
               </View>
             </View>
           </View>
+          
         </Modal>
       }
 

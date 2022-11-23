@@ -12,6 +12,7 @@ export type propsNavigationStack = {
     EditarEmpresa: undefined;
     Editarperfil: undefined;
     CadastrarEmpresa: undefined;
+    HomeAdmin: undefined;
     Search: undefined
     
 }

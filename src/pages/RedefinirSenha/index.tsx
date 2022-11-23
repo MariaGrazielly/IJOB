@@ -21,7 +21,7 @@ export function RedefinirSenha() {
     //redefinir Senha
     await sendPasswordResetEmail(auth,email)
         .then(() => {
-            Alert.alert('Verifique sua caixa de Entrada e/ou Spam.')
+            Alert.alert('Você receberá em alguns instantes um email com as informações para o cadastro da nova senha. Não esqueça de verificar sua caixa de Spam.')
             navigation.navigate('Login')
             console.log("Sucesso")
         })
@@ -42,9 +42,7 @@ export function RedefinirSenha() {
 
       <View style={styles.texto_novasenha}>
         <Text style={styles.texto}>Por favor digite seu endereço de email.
-               Você receberá em alguns instantes um email com 
-               as informações para o cadastro da nova senha. 
-               Não esqueça de verificar sua caixa de Spam.
+              
         </Text>
       </View>
 

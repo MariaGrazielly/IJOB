@@ -60,15 +60,26 @@ export const styles = StyleSheet.create({
       backgroundColor: "rgba(100, 100, 100, 0.1)",
       borderRadius: 8,
     },
+    btn_modal:{
+      flexDirection: "row",
+      position: "absolute",
+      bottom: 5,
+      right: 25,
+    },
     fecharModal:{
       backgroundColor: "#CDCCCC",
-      marginBottom: 10,
       marginRight: 15,
-      padding: 12,
-      position: "absolute",
-      bottom: 0,
-      right: 0,
+      padding: 8,
       borderRadius: 4,
     },
+    verificarModal:{
+      backgroundColor: "green",
+      padding: 8,
+      borderRadius: 4,
+      
+    }, 
+    textoVerificado:{
+      color: "#FFFFFF",
+    }
 
 });
