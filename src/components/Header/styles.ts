@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         padding: 15,
         fontSize: 25,
         fontWeight: "600",
-        marginRight: "25%",
+        marginRight: 60,
     },
     texto_header:{
         fontSize: 20,

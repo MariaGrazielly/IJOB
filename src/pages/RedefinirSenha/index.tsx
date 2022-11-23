@@ -7,6 +7,7 @@ import { firebaseConfig } from '../../../back-end/firebase-config';
 import { initializeApp } from 'firebase/app';
 import { Inputs } from '../../components/Input';
 import { styles } from './styles';
+import { Header } from '../../components/Header';
 
 
 export function RedefinirSenha() {
@@ -34,17 +35,33 @@ export function RedefinirSenha() {
 }
 
   return (
-    <View style={styles.container} >
-      <Text>insira seu email</Text>
-    <Inputs 
+    <View>
+      <Header icone_imag title='Redefinir senha'/>
+
+      <View style={styles.container}>
+
+      <View style={styles.texto_novasenha}>
+        <Text style={styles.texto}>Por favor digite seu endereço de email.
+               Você receberá em alguns instantes um email com 
+               as informações para o cadastro da nova senha. 
+               Não esqueça de verificar sua caixa de Spam.
+        </Text>
+      </View>
+
+    
+      <Inputs 
         titloInput='E-mail'
         onChangeText={setEmail}
         />
-      <View >
-        <TouchableOpacity onPress={ forgotPassword }>
-            <Text 
-            >Redefinir senha</Text>
+  
+  
+      <View>
+        <TouchableOpacity 
+        style={styles.btn}
+        onPress={ forgotPassword }>
+            <Text style={styles.btn_texto}>Redefinir senha</Text>
         </TouchableOpacity>
+        </View>
         </View>
     </View>
   );
