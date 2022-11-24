@@ -162,6 +162,7 @@ export function EditarPerfil() {
           <TouchableOpacity  
           onPress={pickImage}>
           <Image style={styles.imagem} source={{ uri: dados.image }} />
+          <Text style={styles.label_editar}>Editar foto</Text>
           </TouchableOpacity>
           }
 
@@ -175,6 +176,7 @@ export function EditarPerfil() {
             <Text style={styles.info_conteudo}>{email}</Text>
           </View>
         </View> 
+        <View style={styles.editarUser}>
         <TouchableOpacity  
             onPress={()=> navigation.goBack()}
             style={styles.btn_cancelar}>
@@ -186,6 +188,7 @@ export function EditarPerfil() {
             style={styles.btn_salvar}>
             <Text style={styles.label_btn}>Salvar</Text>
             </TouchableOpacity>
+            </View>  
         </View> 
     </Background>
   );

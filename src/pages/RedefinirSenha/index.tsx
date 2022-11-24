@@ -41,7 +41,7 @@ export function RedefinirSenha() {
       <View style={styles.container}>
 
       <View style={styles.texto_novasenha}>
-        <Text style={styles.texto}>Por favor digite seu endereço de email.
+        <Text style={styles.texto}>Por favor, digite seu endereço de email para redefinir sua senha.
               
         </Text>
       </View>

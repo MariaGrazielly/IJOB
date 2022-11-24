@@ -12,9 +12,18 @@ export const styles = StyleSheet.create({
    imagem:{
     width: 150,
     height: 150,
-    marginBottom: 40,
+    marginBottom: 80,
     borderRadius: 8,
     backgroundColor: "white",
+},
+
+label_editar:{
+  fontSize: 15,
+  padding: 5,
+  position: "absolute",
+  right: 30,
+  bottom: 40,
+  backgroundColor: "#007EF3",
 },
 
 info:{
@@ -34,12 +43,18 @@ info_label:{
 info_conteudo:{
   fontSize: 20,
 },
+editarUser:{
+  width: '90%',
+  flexDirection: 'row',
+  marginTop: 80,
+},
 btn_salvar:{
   width: '40%',
   height: 50, 
   borderRadius: 4,
   backgroundColor: '#007EF3',    
   justifyContent: 'center',
+  marginLeft: 50,
 },
 label_btn:{
   textAlign: 'center',

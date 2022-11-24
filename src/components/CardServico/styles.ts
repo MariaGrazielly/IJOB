@@ -64,11 +64,10 @@ export const styles = StyleSheet.create({
       flexDirection: "row",
       position: "absolute",
       bottom: 5,
-      right: 25,
+      right: 27,
     },
     fecharModal:{
       backgroundColor: "#CDCCCC",
-      marginRight: 15,
       padding: 8,
       borderRadius: 4,
     },
@@ -76,7 +75,7 @@ export const styles = StyleSheet.create({
       backgroundColor: "green",
       padding: 8,
       borderRadius: 4,
-      
+      marginLeft: 15,
     }, 
     textoVerificado:{
       color: "#FFFFFF",

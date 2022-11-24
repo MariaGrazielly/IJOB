@@ -200,6 +200,7 @@ export function EditarEmpresa() {
           <TouchableOpacity  
           onPress={pickImage}>
           <Image style={styles.imagem} source={{ uri: dados.imagemCnpj }} />
+          <Text style={styles.label_editar}>Editar foto</Text>
           </TouchableOpacity>
           }
           

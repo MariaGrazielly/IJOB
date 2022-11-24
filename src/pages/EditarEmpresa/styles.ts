@@ -16,6 +16,16 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "white",
 },
+
+label_editar:{
+  fontSize: 15,
+  padding: 5,
+  position: "absolute",
+  right: 30,
+  bottom: 10,
+  color: "white",
+  backgroundColor: "#007EF3",
+},
   container_dados:{
     width: "100%"
 },
