@@ -113,22 +113,10 @@ export function EditarPerfil() {
               'image': imgUrl
             
           });
-          
-          Alert.alert (
-            "Editar Perfil",
-            "Tem certeza que deseja editar Perfil?", [
-              {
-                text: 'Cancelar',
-                style: 'cancel'
-              },
-              {
-                text: 'Editar',
-                onPress: () => Alert.alert("Perfil editado com sucesso"),
-              }
-            ],
-            {cancelable: false}       
-                 
-          );
+
+
+         // Alert.alert("Imagem alterada com sucesso");
+         navigation.navigate("Home");
           
 
           }catch(e){
