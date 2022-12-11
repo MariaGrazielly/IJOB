@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     },
     conteudoModal:{
       width: "80%",
-      height: "60%",
+      height: "70%",
       borderRadius: 4,
       padding: 15,
       backgroundColor: "#fff",

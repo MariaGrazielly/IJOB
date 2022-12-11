@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
 
   iconPesquisar:{
     backgroundColor: "#9C9CA1",
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "500",
     padding: 9,
   },

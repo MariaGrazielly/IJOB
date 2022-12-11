@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         marginRight: "25%",
      },
      icone_header_menu:{
-        padding: 15,
+        padding: 10,
         fontSize: 25,
         fontWeight: "600",
     },

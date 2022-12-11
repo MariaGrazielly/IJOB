@@ -57,11 +57,6 @@ export function CardServico({name_empresa, cidade, estado, rua, bairro, cep, wha
               </View>
 
               <View style={styles.infoModal}>
-                <Text style={styles.dados}>CPF/CNPJ:</Text>
-                <Text style={styles.dadosInfo}>{cpf_cnpj}</Text>
-              </View>
-
-              <View style={styles.infoModal}>
                 <Text style={styles.dados}>Endereço:</Text>
                 <Text style={styles.dadosInfo}>
                   Rua: {rua}
